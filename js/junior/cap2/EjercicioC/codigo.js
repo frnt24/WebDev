@@ -58,6 +58,7 @@ const comenzar = () => {
 		}
 		if (continuar == "2") {
 			alert("El programa finalizará a continuación. Si quieres volver a realizar una operación, recarga la página web. Adiós.");
+			break;
 		}
 	}
 }
