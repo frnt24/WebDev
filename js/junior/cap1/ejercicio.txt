@@ -1,0 +1,25 @@
+A) Tres chicos de 23 años perfectamente normales entran a una heladería a comprar un helado. Pero hay un problema: los precios no están al lado de cada estante con su respectivo helado.
+
+Ellos quieren comprar el helado más caro que puedan con el dinero que tienen, así que... veamos cómo podemos ayudarles.
+
+	Roberto tiene 1.5€
+	Pedro tiene 1.7€
+	Cofla tiene 3€
+
+Los precios de los helados son los siguientes:
+
+	– Palito de helado de agua: 0.6€
+	– Palito de helado de crema: 1€
+	– Bombón helado marca heladix: 1.6€
+	– Bombón helado marca heladovich: 1.7€
+	– Bombón helado marca helardo: 1.8€
+	– Potecito de helado con confites: 2.9€
+	– Pote de 1/4 KG: 2.9€
+
+CREAR SOLUCIONES:
+
+	1. Pedirles que ingresen la cantidad de dinero que tienen y mostrarles el helado más caro que puedan comprar.
+
+	2. Si hay dos o más helados con el mismo precio, mostrar ambos.
+
+	3. Cofla quiere saber cuánto es el cambio.
