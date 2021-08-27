@@ -24,7 +24,7 @@ const comenzar = () => {
 	let operacion;
 	let num1,num2;
 
-	while (continuar == "1") {
+	do {
 
 		operacion = prompt("¿Qué tipo de operación quieres realizar? (1=suma; 2=resta; 3=multiplicación; 4=división)");
 
@@ -61,6 +61,7 @@ const comenzar = () => {
 			break;
 		}
 	}
+	while (continuar == "1");
 }
 
 window.addEventListener("load",comenzar,false);
