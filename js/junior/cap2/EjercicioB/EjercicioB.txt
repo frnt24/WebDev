@@ -1,0 +1,8 @@
+Cofla vuelve de la comisaría exhausto y se fue a dormir.
+Al día siguiente comienzan las clases del ciclo básico de universidad. En su curso son un total de 19 alumnos, pero surgió un problema: se rompió el sistema de registro de asistencias y durante los próximos 30 días no se podrán hacer registros de datos de ningún tipo. Por ende, las clases no podrán comenzar hasta que esto esté solucionado.
+
+CREAR SOLUCIONES:
+
+	1. Crear mini-sistema que nos permita registrar a los alumnos que están presentes (P) y ausentes (A) en clase.
+	2. Pasados los 30 días, mostrar la situación final de todos los alumnos (número total de presentes y ausentes).
+	3. Se puede tener un máximo de 10% de ausencias por semestre. Si se tienen más, aclarar que está suspendido.

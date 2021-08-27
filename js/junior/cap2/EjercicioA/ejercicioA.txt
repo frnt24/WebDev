@@ -1,0 +1,6 @@
+A) Un joven muy afortunado logró ganar el primer premio de la lotería... Exacto, estamos hablando del pobre al que Cofla le dio una mano. Este pobre decide hacer una fiesta para celebrar que salió de la pobreza. Este millonario compró una máquina que deja pasar solamente a los mayores de edad, entre otras cosas.
+
+CREAR SOLUCIONES:
+
+	1. Dejar pasar solo a los mayores de edad.
+	2. La primera persona que entre después de las 2 AM, no paga.
