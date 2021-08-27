@@ -45,15 +45,21 @@ const comenzar = () => {
 			else if (operacion == "4") {
 				dividir(num1,num2);
 			}
-
-			continuar = prompt("¿Quieres realizar alguna operación más? (1=Sí; 2=No)");
-
 		}
+
 		else {
 			alert("Debe introducir una de las operaciones aceptadas: sumar, restar, multiplicar o dividir");
 			comenzar();
 		}
+		continuar = prompt("¿Quieres realizar alguna operación más? (1=Sí; 2=No)");
+		while (continuar != "1" && continuar != "2") {
+			alert("Por favor, introduzca un valor correcto. (1=Sí; 2=No)");
+			continuar = prompt("¿Quieres realizar alguna operación más? (1=Sí; 2=No)");
+		}
+		if (continuar == "2") {
+			alert("El programa finalizará a continuación. Si quieres volver a realizar una operación, recarga la página web. Adiós.");
+		}
 	}
 }
 
-comenzar();
+window.addEventListener("load",comenzar,false);
