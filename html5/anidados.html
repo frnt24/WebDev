@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script>
+
+        function loseventos(){
+
+            var elemento=document.getElementsByTagName("p")[0];
+
+            var elemento2=document.getElementsByTagName("img")[0];
+
+            elemento.addEventListener("click", aviso2, true);
+
+            elemento2.addEventListener("click", aviso1, false);
+        }
+
+        function aviso1(){
+            alert("Hola soy la imagen");
+        }
+
+        function aviso2(){
+            alert("Hola soy el párrafo");
+        }
+
+        window.addEventListener("load", loseventos, false);
+
+
+    </script>
+</head>
+<body>
+    <p><img src="ejercicio1/imagenes/1.jpg"></p>
+</body>
+</html>
+
+<!--Etiqueta HTML5 para vídeo: 
+    
+    <video></video>
+    
+    Atributos:
+        - Src: permite especificar dónde se encuentra el vídeo. En qué carpeta está almacenado.
+        - Controls: permite especificar si nuestro vídeo va a tener una botonera con play, pause, pantalla completa, volument, etc.
+        - Autoplay: permite especificar al navegador si nuestro vídeo va a comenzar a reproducirse automáticamente cuando cargue la página.
+        - Loop: permite especificar al navegador si nuestro vídeo al llegar al final vuelve a iniciarse o no.
+        - Poster: permite incluir una imagen jpg a modo de portada o presentación que aparecerá antes de la reproducción del vídeo.
+        - preload: permite especificar algunas características importantes del vídeo antes de cargarlo (fps, duración, etc.).-->

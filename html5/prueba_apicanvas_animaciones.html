@@ -1,0 +1,77 @@
+<!--MÉTODOS de API Canvas para CREAR ANIMACIONES:
+
+    – clearRect(x1,y1,x2,y2): borra la información que haya en un área del Canvas o en todo el Canvas.
+
+    – setInterval(codigo,tiempo en milisegundos): ejecuta un código X veces durante un período de tiempo.
+
+    – clearInterval(): resetea setInterval().
+    -->
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prueba API Canvas: Animaciones</title>
+
+    <style>
+        #lienzo{
+            border: 1px red solid;
+        }
+    </style>
+
+    <script>
+        var y=300;
+        var estado="bajando";
+        var arriba=y;
+        var horizontal=0;
+
+        function comenzar(){
+            var elemento=document.getElementById("lienzo");
+            lienzo=elemento.getContext("2d");
+
+            setInterval(animacion,50);
+        }
+
+        function animacion(){ //En esta función se dibuja la esfera.
+            if(y<700 && estado=="bajando"){
+                lienzo.clearRect(0,0,1200,750);
+                lienzo.beginPath();
+                lienzo.arc(500+horizontal,y,40,Math.PI*2,false);
+                lienzo.fill();
+                y+=50; //Esto es lo mismo que y=y+50.
+                horizontal+=10.3;
+            }
+
+            if(y==700){
+                arriba+=50;
+                estado="subiendo";
+            }
+
+            if(y>=arriba && estado=="subiendo"){
+                lienzo.clearRect(0,0,1200,750);
+                lienzo.beginPath();
+                lienzo.arc(500+horizontal,y,40,Math.PI*2,false);
+                lienzo.fill();
+                y-=50;
+                horizontal+=10.3;
+            }
+
+            if(y==arriba){
+                estado="bajando";
+            }
+        }
+
+        window.addEventListener("load",comenzar,false);
+    </script>
+</head>
+<body>
+    <section id="dibujo">
+        <canvas id="lienzo" width="1200" height="750">
+            Su navegador no soporta el elemento html5 Canvas.
+        </canvas>
+    </section>
+    
+</body>
+</html>

@@ -1,0 +1,74 @@
+<!-- MÉTODOS de API Canvas para TRANSFORMACIONES:
+
+        – translate(x,y): mueve el origen del lienzo.
+
+        – rotate(radianes): rota el lienzo.
+
+        – scale(x,y): aumenta o disminuye el lienzo (potencialmente. Si X=3 se le dice que debe ser el triple, si Y=1 se le dice que se mantenga igual).
+
+        – transform(m1,m2,m3,m4,dx,dy): cambia las características del lienzo. Los valores por defecto son: m1=1 (este valor amplía potencialmente el ancho del objeto, nuevo_ancho=ancho_inicial*m1),m2=0 (rotación en radianes),m3=0 (sesga lo que aparece dentro del Canvas),m4=1 (este valor amplía potencialmente el alto del objeto, nueva_altura=altura_inicial*m4),dx=0,dy=0 (dx,dy=hacen referencia a dónde establecemos el eje de coordenadas del lienzo).
+
+        – setTransform(m1,m2,m3,m4,dx,dy): reinicia las características del lienzo.
+
+        – save(): graba el estado del lienzo.
+
+        – restore(): restaura el estado grabado del lienzo.
+    -->
+
+    <!DOCTYPE html>
+    <html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Prueba API Canvas: Transformaciones</title>
+
+        <style>
+            #lienzo{
+                border: 1px red solid;
+            }
+        </style>
+
+        <script>
+            function comenzar(){
+                var elemento=document.getElementById("lienzo");
+                lienzo=elemento.getContext("2d");
+
+                lienzo.font="bold 20px verdana";
+                lienzo.save(); //Guarda el Canvas con las características que tiene a esta altura de código.
+                lienzo.fillText("Hola alumnos",50,50);
+                lienzo.translate(60,70);
+                lienzo.rotate(Math.PI/180*55);
+                lienzo.fillText("Hola alumnos",0,0);
+                lienzo.restore(); //Se consigue lo mismo que poniendo el rotate que hay abajo (al haber puesto save() anteriormente).
+                // lienzo.rotate(-Math.PI/180*55); //Se está llevando el lienzo a la posición original.
+                lienzo.translate(300,400);
+                lienzo.scale(2,2);
+                lienzo.fillText("Hola alumnos",0,0);
+
+                // lienzo.transform(3,0,0,1,0,0);
+                // lienzo.font="bold 20px verdana";
+                // lienzo.fillText("Hola alumnos",50,50);
+                // lienzo.transform(1,0,0,10,0,0); //Esta transformación la aplica sobre el texto ya transformado anteriormente. Por tanto, por ejemplo con m1 se le está diciendo que el ancho lo deje como estaba en la última transformación.
+                // lienzo.setTransform(1,0,0,10,0,0); //Esto resetea las características y sobre ese texto aplica lo que se le indica con los valores entre paréntesis.
+                // lienzo.font="bold 20px verdana";
+                // lienzo.fillText("Hola alumnos",50,50);
+                // lienzo.font="bold 20px verdana";
+                // lienzo.fillText("Hola alumnos",50,20);
+                // lienzo.translate(100,100);
+                // lienzo.scale(3,3);
+                // lienzo.rotate(Math.PI); //lo rota 180º
+                // lienzo.fillText("Hola alumnos",-200,-150); //Debe copiarse de nuevo el texto, ya que se ha trasladado el texto después de haberlo escrito, y como el código se lee de arriba a abajo, debe volverse a escribir para que lo modifique.
+            }
+
+            window,addEventListener("load",comenzar,false);
+        </script>
+    </head>
+    <body>
+        <section>
+            <canvas id="lienzo" width="1200" height="750">
+                Su navegador no soporta el elemento html5 Canvas.
+            </canvas>
+        </section>
+    </body>
+    </html>

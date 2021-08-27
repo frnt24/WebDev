@@ -1,0 +1,10 @@
+https://www.w3schools.com/
+
+https://www.w3.org/TR/html52/sec-forms.html
+
+https://www.w3.org/TR/2dcontext/
+
+https://www.w3.org/TR/geolocation/
+
+https://javascript.info/indexeddb
+

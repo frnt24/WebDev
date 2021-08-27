@@ -1,0 +1,192 @@
+<!-- API (Aplication Programming Interface): se puede definir como un conjunto de objetos, propiedades y métodos predefinidos, es decir, ya construido, almacenados en una biblioteca disponibles para su uso. Ejemplo: API forms. -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prueba API forms</title>
+
+    <style>
+
+        table{
+            text-align: center;
+            background-color: #F96;
+            width: 25%;
+            margin: auto;
+            border: 2px #F30 dashed;
+        }
+        
+        td{
+            padding: 15px;
+        }
+        
+        /* #edad{
+            margin-left: -104px;
+        } */
+
+    </style>
+
+    <script>
+
+        var edad;
+
+        function comenzar(){
+
+            edad=document.getElementById("edad");
+
+            edad.addEventListener("change", cambia_rango, false); //El evento change desencadena la acción cada vez que se cambie el elemento.
+
+            document.datos_usuario.addEventListener("invalid", validar, true); //Lo que se está haciendo es decirle que ponga a nuestro formulario "datos_usuario", que se encuentra dentro de la página web (dentro de "document"), a la escucha bajo el evento "invalid". De este modo, cada vez que falle la validación del formulario porque haya algún dato que esté erróneo, hará una llamada a la función "validar", y el último elemento va a ser "true" porque sí tenemos elementos anidados (el elemento "edad" se encuentra dentro del formulario y también está desencadenando un evento (el evento "change") y el propio formulario que engloba a la edad también desencadena un evento ("invalid")). Indicando "True" se le da prioridad cuando se pulse en un elemento del formulario, al propio formulario y, después, a la edad.
+
+            document.getElementById("enviar").addEventListener("click", enviar, false);//Es lo mismo que hacerlo en dos líneas.
+
+            document.datos_usuario.addEventListener("input", validar_tiempo_real, false);//Con el evento "input" se le está diciendo al formulario que cuando le introduzcamos datos (en cualquier punto u objeto del formulario), que desencadene un evento y que llame a la función "validar_tiempo_real").
+
+
+
+            // var nombre=document.getElementById("nombre");
+            // var apellido=document.getElementById("apellido");
+            
+            // nombre.addEventListener("input", validar, false);
+            // apellido.addEventListener("input", validar, false);
+
+            // validar();
+        }
+
+        function cambia_rango(){
+            
+            var salida=document.getElementById("rango");//En la variable salida se almacenará el elemento "output", al que se ha llamado "rango".
+
+            var calculo=edad.value-30; //Al elemento edad le dijimos que se situará por defecto en 30. Al cargar la página, la edad está en 30. Lo que se quiere es almacenar en la variable "cálculo" cuando se llame a la función es el valor 0 (por tanto, al llamarla al principio edad.value valdrá 30, y restándole 30 la variable calculo==0).
+
+            if(calculo<30){
+                calculo=0;
+
+                edad.value=30;
+            }
+            
+            salida.innerHTML=calculo+" a "+edad.value; //Vamos a decirle que el elemento "output" cambie su texto.
+        }
+
+        function validar(e){ //Esta función recibe un parámetro (e) porque así conseguimos que se almacene en la variable "elemento" el elemento que ha ocasionado el error.
+
+        //El método "invalid" se desencadenará cuando el formulario tenga un error de validación (es decir, si falta algún dato por cumplimentar, el formulario ejecuta una acción (llamar a validar) bajo el evento invalid). El evento "invalid" tiene como característica que además de desencadenar la acción, construye un objeto (el objeto "error"). Este objeto tiene sus propiedades y sus métodos. En "e" se almacena el objeto "error". Una de sus propiedades es "target" y esta lo que hace es decirnos cuál es concretamente el objeto del formulario que ha ocasionado el error. Por tanto, en la variable "elemento" lo que se está haciendo es almacenar el objeto que ha ocasionado el error. Una vez localizado el objeto, se hace que se ponga en rojo.
+
+            var elemento=e.target;
+            elemento.style.background="#FFDDDD";
+
+        }
+
+        function enviar(){
+             /*Propiedades de validación (validity):
+            
+                – valueMissing: True cuando el campo es required y está vacío. Que salga un mensaje personalizado cuando el usuario se deje el campo vacío.
+                – patternMismatch: True cuando el valor no coincide con el formato pattern.
+                – typeMismatch: True cuando la sintaxis no coincide con el tipo del campo. Por ejemplo, es un campo de email, pero estás introduciendo otra cosa.
+                – tooLong: True cuando se excede maxlength (número de caracteres).
+                – rangeUnderflow: True cuando se sobrepasa min.
+                – rangeOverflow: True cuando se sobrepasa max.
+                – stepMismatch: True cuando el valor de number no se corresponde con step.
+                – customError: True cuando declaramos error personalizado con "setCustomValidity".
+            */
+            
+            var cuadro_usuario=document.getElementById("usuario");
+            var correcto=document.datos_usuario.checkValidity(); //checkValidity es un método que pertenece a la API forms. Nos devuelve si la validación es True (si ha tenido éxito) o False (si no ha tenido éxito). Y ese True o False se almacena en la variable "correcto".
+
+            if(correcto==true){
+
+                document.datos_usuario.submit();
+            }
+
+            else if(cuadro_usuario.validity.valueMissing==true || cuadro_usuario.validity.patternMismatch==true){
+                alert("El usuario no puede estar vacío y recuerda que debe tener 3 letras (mayúsculas o minúsculas).");
+            }
+            
+        }
+
+        function validar_tiempo_real(e){
+
+            var elemento=e.target;
+
+            if(elemento.validity.valid==true){
+                elemento.style.background="#FFFFFF";
+            }
+
+            else{
+                elemento.style.background="#FFDDDD";
+            }
+        }
+
+        // function validar(){
+
+        //     if(nombre.value=="" && apellido.value==""){
+
+        //         nombre.setCustomValidity("Introduce nombre o apellido");
+
+        //         nombre.style.background="#FFDDDD";
+        //         apellido.style.background="#FFDDDD";
+        //     }
+
+        //     else{
+
+        //         nombre.setCustomValidity("");
+
+        //         nombre.style.background="#FFFFFF";
+        //         apellido.style.background="#FFFFFF";
+        //     }
+            
+        // }
+
+        window.addEventListener("load", comenzar, false);
+
+        // El evento invalid se desencadena cada vez que un formulario falla en la validación. Con ello se puede personalizar los menajes de error.
+
+    </script>
+</head>
+<body>
+    <section>
+
+        <!-- <form name="registro_usuario" method="GET"> -->
+        <form name="datos_usuario" method="GET">
+            <table>
+                <tr>
+                    <td>Usuario:</td>
+                    <td><input pattern="[A-Za-z]{3}" name="usuario" id="usuario" maxlength="10" required></td>
+                </tr>
+
+                <tr>
+                    <td>Correo electrónico:</td>
+                    <td><input type="email" name="email" id="email" required></td>
+                </tr>
+
+                <tr>
+                    <td>Edad:</td>
+                    <td><input type="range" name="edad" id="edad" min="0" max="150" value="30" step="30"></td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <output id="rango">0 a 30</output> <!-- Sirve para escribir un texto que podrá ser modificado dinámicamente -->
+                    </td>
+                </tr>
+
+                <tr>
+                    <td><input type="submit" id="enviar" value="Registrar"></td>
+                </tr>
+            </table>
+
+            <!-- <datalist id="informacion">
+                <option value="666666666" label="  Teléfono 1">
+                <option value="936756374" label="  Teléfono 2">
+                <option value="628519620" label="  Teléfono 3">
+            </datalist> -->
+            <!--  El id de datalist debe ser el mismo que el valor del atributo list que se ha incluido en el campo concreto (en este caso, el campo teléfono). -->
+
+            <!-- Teléfono:&nbsp;<input type="tel" name="telefono" id="telefono" list="informacion"> -->
+            <!-- Con el atributo "list" se le está diciendo al campo teléfono que debe coger la información de una lista. Esa lista se va a construir con el elemento datalist, situándonos antes del campo teléfono. -->
+        </form>
+    </section>
+    
+</body>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prueba de API Canvas</title> <!-- <canvas> crea un lienzo donde poder incluir gráficos, texto, imágenes, se dotará de animación a esos elementos, etc.-->
+    
+        <style> /* Se aplicará formato CSS para dotar al Canvas de un aspecto físico para hacerlo visible. */
+
+            #lienzo{
+                background-color: #F00;
+            }
+
+            section{
+                width: 500px;
+                position: relative;
+                margin: auto;
+            }
+
+        </style>
+
+        <script>
+            /* MÉTODOS del elemento Canvas:
+                    –getContext("2d");: permite desde JavasScript especificarle a nuestra página web si el contexto o la naturaleza de este elemento Canvas va a ser 2 dimensiones ("2d") o 3 dimensiones ("3d").
+
+                    – fillRect(x,y,ancho,alto);: consigue dibujar un rectángulo relleno de color sólido.
+
+                    – strokeRect(x,y,ancho,alto);: dibuja un rectángulo vacío (el perfil, los bordes).
+
+                    – clearRect(x,y,ancho,alto);: borrador rectangular (funcionaría como una goma de borrar).
+
+                    "x" e "y" son las coordenadas exactas en el eje "x" y el "y" donde se situa el inicio del dibujo.
+                    "ancho" y "alto" en píxeles del rectángulo.
+                
+                Para modificar los COLORES del elemento Canvas, pueden utilizarse las siguientes propiedades:
+                    – strokeStyle: propiedad para el color del contorno.
+
+                    – fillStyle: propiedad para el color de relleno.
+
+                    – globalAlpha: transparencia de todas las figuras del lienzo.
+                
+                MÉTODOS que nos permiten trabajar con DEGRADADOS:
+
+                    – createLinearGradient(x1,y1,x2,y2);: crea un objeto para aplicar degradado al lienzo. [X1, Y1 = marcan las coordenadas de inicio del degradado; X2,Y2 = marcan las coordenadas de finalización del degradado].
+
+                    – createRadialGradient(x1,y1,x2,y2);: crea un objeto para aplicar degradado circular o radial [X=centro del círculo; Y=radio del círculo].
+
+                    – addColorStop(posición,color): "posición" marca dónde empieza el degradado. Valores entre 0.0 y 1.0.
+                */
+
+            function comenzar(){
+
+                var elemento=document.getElementById("lienzo");
+
+                lienzo=elemento.getContext("2d");
+
+                // lienzo.fillStyle="#FFDDDD"; //La propiedad del color debe definirse antes del código que dibuja la figura, ya que el código se lee de arriba abajo.
+
+                // lienzo.fillRect(110,80,200,200);
+
+                lienzo.strokeStyle="#405cd2";
+                lienzo.fillStyle="#F8c30d";
+                lienzo.globalAlpha="0.3"; //El Alpha puede ir de 0 (totalmente transparente) a 1 (totalmente opaco).
+
+                lienzo.strokeRect(100,100,120,120);
+                lienzo.fillRect(110,110,100,100);
+                lienzo.clearRect(120,120,80,80);
+                
+                
+                // lienzo.clearRect(135,135,50,50);
+
+            }
+
+            window.addEventListener("load", comenzar, false);
+
+        </script>
+</head>
+<body>
+    <section id="dibujo">
+        <canvas id="lienzo" width="500" height="300"> 
+            Su navegador no soporta el elemento html5 Canvas.
+        </canvas>
+    </section>
+</body>
+</html>

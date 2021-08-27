@@ -1,0 +1,51 @@
+<!-- EVENTOS de la API Drag & Drop para el OBJETO A ARRASTRAR:
+
+    – Dragstart: desencadena la acción al comenzar a arrastrar.
+
+    – Drag: desencadena la acción durante la operación de arrastre.
+
+    – Dragend: desencadena la acción al terminar de arrastrar.
+
+EVENTOS de la API Drag & Drop para el OBJETO DE DESTINO:
+
+    – Dragenter: cuando el ratón entra en el área de destino.
+
+    – Dragover: cuando el ratón se mueve sobre el área de destino.
+
+    – Drop: cuando el elemento es soltado en el área de destino.
+
+    – Dragleave: cuando el elemento arrastrado sale del área de destino.
+
+Para establecer la información a compartir, existe en la API Drag & Drop el OBJETO dataTransfer, que tiene los siguientes MÉTODOS:
+
+    – setData: declara qué datos serán transferidos. Se utiliza en el objeto que vamos a arrastrar, diciéndole a nuestra página web qué vamos a compartir sobre este objeto.
+
+    – getData: declara qué datos serán capturados.
+
+Para RESETEAR ACCIONES POR DEFECTO del NAVEGADOR se utiliza el siguiente MÉTODO:
+
+    – preventDefault();
+-->
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prueba API Drag & Drop</title>
+
+    <link rel="stylesheet" href="prueba_apidragdrop.css">
+    <script src="prueba_apidragdrop.js"></script>
+</head>
+<body>
+    <section id="zona_destino">
+        Arrastre el elemento hasta aquí.
+    </section>
+
+    <section id="caja_imagen">
+        <img src="ejercicio1/imagenes/1.jpg" id="imagen">
+    </section>
+    
+</body>
+</html>

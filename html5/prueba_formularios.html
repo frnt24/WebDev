@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prueba con formularios</title>
+
+</head>
+<body>
+    <section id="prueba">
+        <form name="miformulario" id="miformulario" method="GET" autocomplete="off">
+
+            Email:&nbsp;<input type="email" name="email" id="email" required multiple><br><br>
+            Buscar:&nbsp;<input type="search" name="buscar" id="buscar"><br><br>
+            URL:&nbsp;<input type="url" name="url" id="url" autofocus><br><br>
+            Teléfono:&nbsp;<input type="tel" name="telefono" id="telefono" pattern="666666666"><br><br>
+            Edad:&nbsp;<input type="number" name="edad" id="edad" min="0" max="150" placeholder="Múltiplos de 5"><br><br>
+            <!--El valor range para el atributo type incluye una especie de cursor o dial para arrastrar y escoger el valor numérico. Debe acompañarse de un mínimo, un máximo y un step-->
+            <!-- Precio:&nbsp;<input type="range" name="precio" id="precio" min="10" max="200"> -->
+
+            Fecha y hora:&nbsp;<input type="datetime-local" name="fecha" id="fecha"><br><br>
+            Código postal:&nbsp;<input pattern="[0-9]{5}" name="cpostal" id="cpostal" placeholder="5 dígitos">
+
+            <!-- Nuevos atributos de <input>:
+            
+                    – Placeholder: insertar una nota informativa al usuario de lo que debe insertar en el espacio de input.
+                    – Required: el campo será requerido.
+                    – Multiple: para enviar más de un dato dentro de un campo (ejemplo, enviar dos emails o más separados por comas).
+                    – Autofocus: cuando hay varios elementos en un formulario, este será el elemento en el que aparecerá el cursor al cargar la página.
+                    – Pattern: permite establecer ciertas validaciones (por ejemplo, en campos como el código postal).
+                    – Form: permite construir un elemento de formulario fuera del propio formulario y que funcione a pesar de estar fuera del formulario. Entre comillas debe indicarse el nombre (name) que se le dio al formulario del que se quiere que forme parte.-->
+
+            <input type="submit">
+        </form>
+    </section>
+
+    <img src="Imagenes/sunset-3726030_640.jpg" width="200" height="200">
+    <br>
+    Nombre:&nbsp;<input type="text" name="nombre" id="nombre" form="miformulario">
+    
+</body>
+</html>

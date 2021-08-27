@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prueba de degradados con API Canvas</title>
+
+    <style>
+        /* #lienzo{
+            background-color: red;
+        } */
+
+        section{
+            width: 500px;
+            /* position: relative; */
+            margin: auto;
+        }
+    </style>
+
+    <script>
+        /* MÉTODOS que nos permiten trabajar con DEGRADADOS:
+
+                – createLinearGradient(x1,y1,x2,y2);: crea un objeto para aplicar degradado al lienzo. [X1, Y1 = marcan las coordenadas de inicio del degradado; X2,Y2 = marcan las coordenadas de finalización del degradado].
+
+                – createRadialGradient(x1,y1,r1,x2,y2,r2);: crea un objeto para aplicar degradado circular o radial [x1,y1=centro del primer círculo; r1=radio del primer círculo].
+
+                – addColorStop(posición,color): "posición" marca dónde empieza el degradado. Valores entre 0.0 y 1.0.
+                */
+        function comenzar(){
+
+            var elemento=document.getElementById("lienzo");
+
+            lienzo=elemento.getContext("2d");
+
+            lienzo.beginPath();
+            lienzo.arc(75,75,50,0,Math.PI*2,true);
+            lienzo.moveTo(110,75);
+            lienzo.arc(75,75,35,0,Math.PI,false);
+            lienzo.moveTo(65,65);
+            lienzo.arc(60,65,5,0,Math.PI*2,true);
+            lienzo.moveTo(95,65);
+            lienzo.arc(90,65,5,0,Math.PI*2,true);
+            lienzo.stroke();
+
+        }
+        
+        window.addEventListener("load", comenzar, false);
+    </script>
+</head>
+<body>
+    <section id="dibujo">
+        <canvas id="lienzo" width="500" height="300">
+            Su navegador no soporta el elemento html5 Canvas.
+        </canvas>
+    </section>
+    
+</body>
+</html>

@@ -1,0 +1,38 @@
+@charset "UTF-8";
+/* Documento CSS */
+
+#cabeceraweb{
+    background-color: #00f;
+}
+
+#navegacionprincipal{
+    background-color: darkkhaki;
+}
+
+#barralateral{
+    background-color: lightcyan;
+}
+
+#contenidoprincipal{
+    background-color: slategrey;
+    margin-left: 205px;
+    padding-left: 10px;
+    padding-bottom: 10px;
+}
+
+#pieprincipal{
+    background-color: yellow;
+    clear: both;
+    margin-top: 20px;
+}
+
+li{
+    background-color: gold;
+    display: inline;
+}
+
+aside{
+    float: left;
+    height: 690px;
+}
+

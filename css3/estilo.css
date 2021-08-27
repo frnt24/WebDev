@@ -1,0 +1,10 @@
+* {
+	font-family: sans-serif;
+	font-weight: 100;
+}
+
+div {
+	padding: 15px;
+	display: flex;
+	color: #f4d;
+}

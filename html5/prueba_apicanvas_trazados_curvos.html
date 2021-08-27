@@ -1,0 +1,79 @@
+<!--(Primer paso) MÉTODOS para GENERAR TRAZADOS dentro de un CANVAS:
+
+    – beginPath(): comienza la figura. Marca el inicio de la creación del trazado. Es el primer método en ser llamado.
+
+    – closePath(): termina la figura. Marca el final de la creación del trazado. Es el último método en ser llamado. Si se utiliza fill( para dibujar, closePath() puede ser ignorado.
+
+(Segundo paso) MÉTODOS para DIBUJAR el TRAZADO (para enviarlas al Canvas):
+
+    – Stroke(): dibuja solo el contorno.
+
+    – Fill(): dibuja una figura sólida.
+
+    – Clip(): crea una máscara.
+
+                                                                                        Primer paso: crear el trazado en código.
+
+                                                                                        Segundo paso: dibujar el trazado creado.
+
+MÉTODOS para CREAR el TRAZADO que posteriormente será dibujado:
+
+    – moveTo(x,y): mueve el lápiz a la posición marcada en las coordenadas.
+
+    – lineTo(x,y): genera una línea recta desde la posición actual del lápiz hasta las nuevas coordenadas.
+
+    – Rect(x,y,ancho,alto): genera un rectángulo.
+
+    – Arc(x,y,radio,ángulo_inicial,ángulo_final,dirección).
+
+    – bezierCurveTo(a,b,c,d,x,y): genera una curva bezier cúbica.
+
+    – quadraticCurveTo(a,b,x,y): genera una curva bezier cuadrática.-->
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prueba API Canvas: Trazados</title>
+
+    <style>
+        section{
+            width: 500px;
+            margin: auto;
+            border: 1px red solid;
+        }
+        
+    </style>
+
+    <script>
+        function comenzar(){
+            var elemento=document.getElementById("lienzo");
+            lienzo=elemento.getContext("2d");
+
+            lienzo.beginPath();
+            // lienzo.arc(100,100,50,0,Math.PI,false); //lienzo.arc(x,y,radio,ángulo_inicial,ángulo_final,dirección); X,Y=establecen el punto central del círculo. ángulo_inicial y ángulo_final se calculan en radianes, con valor de 0 a 1 (1 significa que el arco tiene la misma longitud que el radio del círculo). Estos dos valores suelen indicarse con el número PI, ya que 360º=2*PI radianes. Dirección indica hacia dónde irá el arco. Si se indica true, será a la inversa de lo que establecen los valores en radianes.
+
+            lienzo.moveTo(250,50);
+            // lienzo.quadraticCurveTo(300,50,50,290); 
+            /*Al usar el método quadraticCurveTo() debe indicarse antes el punto desde el que se va a iniciar el dibujo, usando el métoco moveTo(). lienzo.quadraticCureTo(a,b,x,y); A,B=corresponden al punto de control.
+            X,Y=corresponden al punto final.*/
+            lienzo.bezierCurveTo(200,125,300,125,250,200);
+            lienzo.stroke();
+
+
+        }
+
+        window.addEventListener("load",comenzar,false);
+    </script>
+</head>
+<body>
+    <section id="dibujo">
+        <canvas id="lienzo" width="500" height="300">
+            Su navegador no soporta el elemento html5 Canvas.
+        </canvas>
+    </section>
+    
+</body>
+</html>

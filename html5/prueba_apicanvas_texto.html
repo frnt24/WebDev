@@ -1,0 +1,89 @@
+<!--PROPIEDADES de API Canvas para TEXTO:
+
+    – Font: mismos valores que en CSS.
+
+    – textAlign: alineamiento horizontal de texto con los siguientes valores:
+
+        - Start: dice que tiene que comenzar a escribir el texto en la posición X,Y que se indica a contuación.
+        - End: dice que tiene que terminar de escribir el texto en la posición X,Y que se indica a continuación.
+        - Left
+        - Right
+        - Center
+    
+    – textBaseline: alineamiento vertical con los siguientes valores:
+
+        - Top
+        - Hanging
+        - Middle
+        - Alphabetic
+        - Ideographic
+        - bottom
+
+MÉTODOS de API Canvas para dibujar TEXTO:
+
+    – strokeText(texto,x,y): dibuja texto sin relleno.
+
+    – fillText(texto,x,y): dibuja texto con relleno.
+
+    – measureText: devuelve información sobre el tamaño del texto. Esto es útil en animaciones.
+
+PROPIEDADES para APLICAR SOMBRAS en el TEXTO:
+
+    – shadowColor: color de sombra.
+
+    – shadowOffsetX: desplazamiento horizontal de la sombra.
+
+    – shadowOffsetY: desplazamiento vertical de la sombra.
+
+    – shadowBlur: difuminado de la sombra.-->
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prueba API Canvas: Texto</title>
+
+    <style>
+        #lienzo{
+            border: 1px red solid;
+        }
+
+        section{
+            width: 800px;
+            position: relative;
+            margin: auto;
+        }
+    </style>
+
+    <script>
+        function comenzar(){
+            var elemento=document.getElementById("lienzo");
+            lienzo=elemento.getContext("2d");
+            lienzo.shadowColor="rgba(0,0,0,0.5)";
+            lienzo.shadowOffsetX=4;
+            lienzo.shadowOffsetY=4;
+            lienzo.shadowBlur=5;
+            lienzo.font="bold 48px verdana";
+            lienzo.textAlign="start";
+            lienzo.textBaseline="top";
+            lienzo.fillText("Hola alumnos",100,100);
+            // lienzo.moveTo(100,100);
+            // lienzo.lineTo(200,100);
+            // lienzo.stroke();
+            var dimensiones=lienzo.measureText("Hola alumnos");
+            // lienzo.strokeRect(100,100,dimensiones.width+10,58);
+        }
+        window.addEventListener("load",comenzar,false);
+    </script>
+</head>
+<body>
+    <section>
+        <canvas id="lienzo" width="800" height="600">
+            Su navegador no admite el elemento HTML5 Canvas.
+        </canvas>
+    </section>
+    
+</body>
+</html>

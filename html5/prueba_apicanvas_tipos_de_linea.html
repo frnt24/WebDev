@@ -1,0 +1,87 @@
+<!--PROPIEDADES de API Canvas para LÍNEAS:
+
+    – lineWidth: grosor de línea. Por defecto =1.
+
+    – lineCap: terminación de línea. Valores:
+
+        - Butt
+        - Round
+        - Square
+    
+    – lineJoin: conexión entre líneas. Valores:
+
+        - Round
+        - Bevel
+        - Miter
+    
+    – miterLimit: para usar junto a lineJoin con valor miter. Determina cuánto ha de extenderse la unión entre líneas.
+
+                            ¡IMPORTANTE!
+                            cada vez que cambiemos las características de la línea, ha de comenzarse un nuevo trazado con beginPath().-->
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prueba API Canvas: Tipos de línea</title>
+
+    <style>
+        #lienzo{
+            border: 1px red solid;
+        }
+        section{
+            width: 800px;
+            position: relative;
+            margin: auto;
+        }
+    </style>
+
+    <script>
+        function comenzar(){
+            var elemento=document.getElementById("lienzo");
+            lienzo=elemento.getContext("2d");
+
+            lienzo.beginPath(); //Dibujo de circunferencia exterior.
+            lienzo.arc(200,150,100,0,Math.PI*2,false);
+            lienzo.stroke();
+            lienzo.lineWidth=10;
+            lienzo.lineCap="round";
+            lienzo.beginPath(); //Dibujo de sonrisa.
+            lienzo.arc(200,170,60,0,Math.PI,false);
+            lienzo.stroke();
+            lienzo.lineWidth=5;
+            lienzo.lineJoin="miter";
+            lienzo.miterLimit=5;
+            lienzo.beginPath(); //Dibujo de nariz.
+            lienzo.moveTo(195,135);
+            lienzo.lineTo(215,155);
+            lienzo.lineTo(195,155);
+            lienzo.stroke();
+            lienzo.lineWidth=1;
+            lienzo.beginPath(); //Dibujo de ojos.
+            lienzo.arc(175,110,7,0,Math.PI*2,false);
+            lienzo.arc(225,110,7,0,Math.PI*2,false);
+            lienzo.fill();
+            lienzo.beginPath();
+            lienzo.arc(168,106,15,0,Math.PI*2,false);
+            lienzo.stroke();
+            lienzo.beginPath();
+            lienzo.arc(232,106,15,0,Math.PI*2,false);
+            lienzo.stroke();
+            
+
+        }
+
+        window.addEventListener("load",comenzar,false);
+    </script>
+</head>
+<body>
+    <section>
+        <canvas id="lienzo" width="800" height="600">
+            Su navegador no soporta el elemento html5 Canvas.
+        </canvas>
+    </section>
+</body>
+</html>

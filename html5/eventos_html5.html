@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script>
+
+        /* El método addEventListener() tiene 3 argumentos:
+
+                1. Nombre del evento
+                
+                2. Función a ejecutar
+                
+                3. Valor booleano (gestiona, en caso de haber elementos anidados, cuál ejecuta primero y cuál ejecuta después)*/
+        var imagen=new Array(3);
+
+        function tipoflor(){
+            alert("Pensamientos");
+        }
+
+        function manejaflor(){
+
+            for (var i=0;i<4;i++){
+
+            imagen[i]=document.getElementsByTagName("img")[i];
+            
+            }
+
+            imagen[0].addEventListener("mouseover", function(){imagen[0].width=225; imagen[0].height=225;}, false);
+            imagen[0].addEventListener("mouseout", function(){imagen[0].width=200; imagen[0].height=200;}, false);
+            imagen[0].addEventListener("click", tipoflor, false);
+
+            imagen[1].addEventListener("mouseover", function(){imagen[0].width=225; imagen[1].height=225;}, false);
+            imagen[1].addEventListener("mouseout", function(){imagen[0].width=200; imagen[1].height=200;}, false);
+            imagen[1].addEventListener("click", tipoflor, false);
+
+            imagen[2].addEventListener("mouseover", function(){imagen[0].width=225; imagen[2].height=225;}, false);
+            imagen[2].addEventListener("mouseout", function(){imagen[0].width=200; imagen[2].height=200;}, false);
+            imagen[2].addEventListener("click", tipoflor, false);
+
+            imagen[3].addEventListener("mouseover", function(){imagen[0].width=225; imagen[3].height=225;}, false);
+            imagen[3].addEventListener("mouseout", function(){imagen[0].width=200; imagen[3].height=200;}, false);
+            imagen[3].addEventListener("click", tipoflor, false);
+            
+
+        }
+
+        // function crecer(){
+
+        //     imagen.width=225;
+        //     imagen.height=225;
+        // }
+
+        // function menguar(){
+
+        //     imagen.width=200;
+        //     imagen.height=200;
+        // }
+        
+        // window.onload=manejaflor;
+
+        window.addEventListener("load", manejaflor, false);
+
+
+
+
+    </script>
+
+</head>
+<body>
+    
+    <p><img src="ejercicio1/imagenes/1.jpg">&nbsp;&nbsp;<img src="ejercicio1/imagenes/2.jpg">&nbsp;&nbsp;<img src="ejercicio1/imagenes/3.jpg">&nbsp;&nbsp;<img src="ejercicio1/imagenes/4.jpg"></p>
+</body>
+</html>

@@ -1,0 +1,972 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2580
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica-Bold;\f1\fswiss\fcharset0 Helvetica;\f2\fmodern\fcharset0 CourierNewPSMT;
+}
+{\colortbl;\red255\green255\blue255;\red251\green0\blue7;\red255\green255\blue11;\red255\green255\blue255;
+\red35\green255\blue6;\red251\green0\blue7;\red0\green0\blue194;\red255\green255\blue255;\red146\green26\blue32;
+\red251\green0\blue7;\red161\green0\blue63;\red64\green118\blue25;\red0\green0\blue0;\red93\green0\blue130;
+}
+{\*\expandedcolortbl;;\cssrgb\c99893\c12008\c0;\cssrgb\c100000\c100000\c0;\cssrgb\c100000\c100000\c100000\c0;
+\cssrgb\c0\c100000\c0;\cssrgb\c100000\c12195\c0;\cssrgb\c0\c0\c80392;\cssrgb\c100000\c100000\c100000;\cssrgb\c64706\c16471\c16471;
+\cssrgb\c100000\c0\c0;\cssrgb\c69983\c8943\c31331;\cssrgb\c30912\c52771\c12623;\cssrgb\c0\c0\c0;\cssrgb\c44621\c4955\c58079;
+}
+\paperw11900\paperh16840\margl1440\margr1440\vieww28600\viewh16380\viewkind0
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\qj\partightenfactor0
+
+\f0\b\fs28 \cf0 SELECTORES en CSS: 
+\f1\b0 \
+\
+	\'96 Universal (*): este selector selecciona todos los elementos;\
+\
+	\'96 De tipo (h1, h2, button...):  son los que seleccionamos por elemento;\
+\
+	\'96 Por clases (.nombreclase):  debe a\'f1adirse el atributo "class" a la etiqueta concreta en el c\'f3digo html;\
+\
+	\'96 Por ID (#id): se debe asignar un id como atributo a la etiqueta concreta en el c\'f3digo html. Se debe trabajar con "id" \'fanicos. El id tiene m\'e1s rango de especificidad;\
+\
+	\'96 Por atributo ([atributo="valor"]): debe asignarse en el html un atributo y un valor;\
+\
+	\'96 Por descendiente (padre hijo).\
+\
+	\'96 Por pseudo-clases (elemento: evento;): active, hover, entre otros. En un evento se genera una selecci\'f3n. Las pseudo-clases son los eventos de la selecci\'f3n.\
+\
+
+\f0\b \
+\
+ESPECIFICIDAD de mayor a menor importancia:
+\f1\b0 \
+\
+										1) !important (este es el nivel m\'e1s alto). color: grey !important;\
+										2) estilos en l\'ednea\
+										3) Identificadores (id)\
+										4.1) clases\
+										4.2) pseudo-clases\
+										4.3) atributos\
+										5.1) Elementos\
+										5.2) pseudo-elementos\
+\
+	Cuando seleccionamos a dos de la misma jerarqu\'eda (dos pseudo-clases, dos pseudo-elementos...), entonces se rige por la norma de la cascada y, por tanto, el estilo que finalmente se ver\'e1 es el que se haya aplicado m\'e1s al 	final. Si son elementos de diferente jerarqu\'eda, entonces lo que importa es esto. El que tenga mayor jerarqu\'eda pasar\'e1 por delante de acuerdo con el nivel de especificidad.\
+\
+
+\f0\b \
+\
+METODOLOG\'cdA BEM:
+\f1\b0 \
+\
+	Consiste en evitar los conflictos expuestos en el apartado de especificaciones, evitar usar muchas clases y generar conflictos, de una forma en la que se puede conocer y darnos cuenta de qu\'e9 elementos se est\'e1n 	seleccionando a partir de las clases. Nos basamos en el nombre de la clase para saber qu\'e9 elemento estamos seleccionando.\
+\
+	Entonces, la metodolog\'eda consistir\'eda en lo siguiente:\
+\
+		Incluir el atributo class="nombredelcontenedor__nombredelemento".\
+		Ejemplo:\
+\
+			<body>\
+				<div class="contact-form">\
+					<input type="text" class="contact-form__input--active\'93>\
+					<input type="password" class="contact-form__input">\
+					<input type="text" class="contact-form__input">\
+					<input type="password" class="contact-form__input">\
+					<input type="text" class="contact-form__input">\
+				</div>\
+			</body>\
+\
+	\
+	Entonces, se puede indicar en CSS:\
+\
+			.nombredelcontenedor__nombredelelemento:first-child \'97\'97\'97\'97 Ejemplo: .contact-form__input:first-child\
+			\
+			o\
+\
+			.nombredelcontenedor__nombredelelemento\cf2 \cb3 --\cf0 \cb1 active \'97\'97\'97\'97 Ejemplo: .contact-form__input--active (con este seleccionamos solo al primero, que lo consideramos especial). Con los dos guiones se marca lo que le 			hace especial\
+\
+	Esto se realiza por bloques. As\'ed, en este ejemplo se observan dos bloques, con sus respectivas clases asignadas a cada uno de sus elementos:\
+\
+			<div class="contact-form">\
+				<p class="contact-form__p">\
+					<h2 class="contact-form__p-h2"></h2>\
+				</p>\
+			</div>\
+\
+			<div class="subscriber-form">\
+				<p class="subscriber-form__p">\
+					<h2 class="subscriber-form__p-h2"></h2>\
+				</p>\
+			</div>\
+\
+
+\f0\b \
+\
+TEOR\'cdA DE LAS MEDIDAS
+\f1\b0 :\
+\
+\
+	En CSS hay dos unidades de medidas:\
+	\
+		\'96 Relativas: dependen de algo, son variables. Con las medidas relativas, se podr\'e1 adaptar a dispositivos con pantallas de diferentes medidas. Si es con medidas fijas, no se adapta. \ul Responsive Design\ulnone  es un concepto que 		se utiliza para poder adaptar las distintas p\'e1ginas web a m\'f3viles y a tablets. Las medidas relativas son 
+\f0\b rem
+\f1\b0  y 
+\f0\b em
+\f1\b0 . 
+\f0\b REM
+\f1\b0  tiene como referencia el root.\
+\
+		La medida 
+\f0\b EM
+\f1\b0  funciona de la siguiente forma:\
+\
+			Por defecto, 1em = 16px. Para definir nosotros esa medida, es mediante herencia. El contenedor es el que define el valor del em. Si al contenedor se le indica: font-size: 20px, ahora 1em ser\'e1 igual a 20px. Es decir, 			1em = al valor que se le d\'e9 a la caja contenedora. En los ejemplos, la caja contenedora ser\'eda el <div>.\
+\
+		Otras medidas relativas son 
+\f0\b vw (viewport width)
+\f1\b0  y 
+\f0\b vh (viewport height).
+\f1\b0  Estas medidas ocupan todo el ancho de la pantalla. 100vw = ancho total de la pantalla y 100vh = alto total de la pantalla.\
+\
+		El 
+\f0\b porcentaje
+\f1\b0  tambi\'e9n es una medida relativa, pero lo que se trabaja con esta medida es el porcentaje de la caja que la contiene.\
+\
+		\'96 Fijas: por ejemplo, los p\'edxeles, los mm, los puntos, los cm\'85\
+\
+
+\f0\b \
+\
+PROPIEDADES DEL TEXTO (FONT PROPERTIES)
+\f1\b0 :\
+\
+\
+	\'96 font-size: tama\'f1o de la letra\
+\
+	\'96 font-family: tipograf\'eda (Georgia, Verdana\'85)\
+\
+	\'96 line-height: nace del centro de la letra. 1 LINE HEIGHT = 1/2 del tama\'f1o de la letra hacia arriba + 1/2 del tama\'f1o de la letra hacia abajo.\
+\
+	\'96 font-weight: grosor de la letra.\
+\
+	
+\f0\b C\'f3mo exportar tipograf\'edas?
+\f1\b0 \
+\
+		1. Ir a fonts.google.com\
+\
+		2. Hacer click en la fuente que se quiere.\
+\
+		3. Hacer click en \'93+ select this style\'94.\
+\
+		4. Copiar el c\'f3digo del enlace a la hoja de estilos e incluirlo en el c\'f3digo HTML.\
+\
+		5. Copiar el c\'f3digo CSS e incluirlo en la hoja de estilos CSS propia.\
+\
+\
+\
+
+\f0\b NORMALIZE:
+\f1\b0 \
+\
+Los navegadores siempre traen un estilo por defecto. Con el normalize se reinician los estilos que traen los navegadores por defecto. C\'f3mo se hace?\
+\
+	1. Ir a https://necolas.github.io/normalize.css/\
+\
+	2. Click en download.\
+\
+	3. Hacer guardar como y guardarlo en la carpeta correspondiente.\
+\
+	4. Incluirlo en la hoja HTML con <link>.\
+\
+	5. Abrir el archivo CSS con Sublime Text.\
+\
+	6. Con CMD+F (o CTRL+F) buscar:\
+\
+		\'96 img. Agregarle: max-width: 100%, para que las im\'e1genes en los m\'f3viles nos las ajuste al 100% y que no se nos pase.\
+\
+		\'96 border-box. En caso de no encontrarlo, ir a arriba del todo del documento y agregar lo siguiente:\
+\
+			* \{\
+ 			box-sizing: border-box;\
+			\}\
+\
+			Esto sirve para conseguir que si se quiere que la caja sea siempre de un tama\'f1o determinado, que sea as\'ed, ya que esta instrucci\'f3n hace que, por ejemplo, si se quiere que el tama\'f1o total de la caja sea de 50px y 			posteriormente se a\'f1aden 20px de padding en top y bottom, el sistema se encargar\'e1 de que no sobrepase los 50px que le hemos dicho que tenga la caja, haciendo que lo restante solo tenga un tama\'f1o de 10px, esto 			es, 20px+20px+10px=50px.\
+\
+\
+\
+\
+
+\f0\b TEOR\'cdA DE CAJAS:
+\f1\b0 \
+\
+\
+En todo HTML hay solo 
+\f0\b 2 tipos de cajas
+\f1\b0 :\
+\
+	\'96 En bloque: estas son las m\'e1s importantes, ya que dividen la p\'e1gina por bloques. Siempre se van a ajustar al ancho de su contenedor. Siempre el ancho es el total de la caja que lo contiene.\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\qj\partightenfactor0
+\cf0 \
+			Por ejemplo, si se tiene un contenedor de 20px y dentro le pongo un elemento en bloque, este elemento va a ser de 20px.\
+\
+		Para cambiar el comportamiento de las cajas, se utiliza la propiedad display: inline;\
+\
+		Con \'93display: inline-block;\'94 se consigue que el elemento se comporte como un elemento en l\'ednea, pero pueda adquirir las propiedades de un elemento en bloque.\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\qj\partightenfactor0
+\cf0 \
+\
+	\'96 En l\'ednea: este elemento es seg\'fan el contenido. Se pueden poner uno al lado del otro porque el ancho es corto. Se puede hacer que los elementos en l\'ednea se comporten como bloques y que los elementos en bloque sean 	elementos en l\'ednea.\
+\
+	A los elementos en l\'ednea no se les puede dar \'93width\'94 ni \'93height\'94, entre otras cosas, si bien estas dos son las m\'e1s importantes.\
+\
+Algunas propiedades de caja (son las propiedades que modifican o afectan a las cajas o al contorno de las cajas o al entorno de las cajas):\
+\
+	\'96 background-color: permite cambiar el color de fondo.\
+\
+	\'96 padding: es la distancia que hay entre el texto y la caja. Hay cuatro paddings: left, top, right y bottom. Padding es una shorthand property, esto significa que es una propiedad acortada, una propiedad que que se puede 	acortar, que se puede poner de varias formas. Esto significa que puede ponerse:\
+\
+		\'96 Individualmente.\
+\
+			padding-left: 30px; \
+			padding-right: 30px;\
+			padding-top: 20px;\
+			padding-bottom: 20px;\
+\
+		\'96 A todos los lados el mismo padding.\
+\
+			padding: 20px;\
+\
+		\'96 Al eje y (top, bottom) una medida, y al eje x (left, right) otra.\
+\
+			padding: Ypx Xpx;\
+\
+		\'96 A todos los lados diferente, pero en una misma l\'ednea de c\'f3digo.\
+\
+			padding: Tpx Rpx Bpx Lpx; (T=Top, R=Right, B=Bottom, L=Left). Si no se define Left, por ejemplo, este coger\'e1 el mismo valor que Right (ya que pertenecen al mismo eje); Si no se define Bottom, por ejemplo, este 			coger\'e1 el mismo valor que Top por el mismo motivo.\
+\
+	\'96 Height: Alto.\
+\
+	\'96 Width: Ancho.\
+\
+	\'96 Margin: distancia que hay entre las cajas. Hay margin top, right, bottom y left. Separa la caja del resto de las cajas. Respecto a la l\'f3gica de los lados, funciona igual que el padding en relaci\'f3n con el eje de las X y de las Y.\
+\
+	\'96 Border-radius: sirve para redondear los bordes.\
+\
+	\'96 Border: para dar formato al borde. Esta es una propiedad acortada. border: a b c. a=Tama\'f1o del borde; b=estilo (solid, dashed, double, dotted, groove, ridge, inset, outset\'85); c=Color.\
+\
+	\'96 Box-shadow: permite darle sombra a la caja. box-shadow: a b c d e; a=eje X; b=eje Y; c=tama\'f1o del desenfoque de la sombra; d=borde de la sombra (generalmente se le da 0); e=color.\
+\
+		TIP: puede duplicarse, triplicarse\'85 el efecto si se copia de nuevo lo mismo separado por una coma. Ejemplo:\
+\
+			box-shadow: 30px 20px 10px 10px #000, 30px 20px 10px 10px #000, \'85\
+\
+	\'96 Text-shadow: permite darle sombra al texto. text-shadow: a b c d; a=eje X; b=eje Y; c=tama\'f1o del desenfoque de la sombra; d=color.\
+\
+		TIP: puede duplicarse, triplicarse\'85 el efecto si se copia de nuevo lo mismo separado por una coma. Ejemplo:\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\qj\partightenfactor0
+\cf0 \
+			text-shadow: 2px 2px 7px #fff, 2px 2px 7px #fff, \'85\
+\
+	\'96 transform: rotate(Xdeg): sirve para rotar la caja. Entre par\'e9ntesis se indican los grados que quiere que rote, en degrees (deg). Ejemplo: transform: rotate(90deg);\
+\
+	\'96 Outline: es un shorthand.\
+\
+\cb4 	\'96 Position: se encarga de posicionar los elementos. Que est\'e1 posicionado significa que va a afectar el flujo HTMl (esto es, el orden en el que se ponen todos los elementos). El espacio de cada caja est\'e1 reservado a esa caja. 	Que est\'e9 posicionado significa que adquiere cuatro nuevas propiedades:\
+\
+	Las dos que m\'e1s importan son top y left. Es decir, si se indica \'93top\'94, el \'93bottom\'94 indicado no se va a aplicar; y si se indica \'93left\'94, el \'93right\'94 indicado no se va a aplicar. Si \'93top\'94 y \'93left\'94 no est\'e1n, entonces s\'ed se aplicar\'eda el resto. 	Cuando la caja est\'e1 posicionada, se adquieren las siguientes propiedades:\
+\
+			\'96 
+\f0\b Top
+\f1\b0 . Si digo \'93top: 20px\'94, le estoy diciendo que la caja se mueva 20px hacia abajo.\
+			\'96 
+\f0\b Left
+\f1\b0 \
+			\'96 Right\
+			\'96 Bottom\
+			\'96 
+\f0\b z-index
+\f1\b0 . Es la forma en que vamos a poner un elemento por encima de otro. Lo que hace el z-index es ordenarlos en el eje z. El que tenga un valor m\'e1s alto va a estar adelante de nuestra vista en el eje z, es decir, 			m\'e1s cercano a nosotros. El valor de z-index es el que va a aparecer delante. Este \'edndice tiene por defecto valor 0. Se suele dejar mucho espacio entre cada z-index. Por ejemplo, dejar 50 o 100 espacios (z-index: 50; 			z-index: 100; \'85) entre cada uno, de manera que si posteriormente se quiere agregar algo en medio, que no sea necesario modificar todos los dem\'e1s manualmente.\
+\
+			Este \'edndice tiene un conflicto entre padres e hijos. Es decir, \
+\
+						<div class=\'93contenedor\'94>\
+							<div class=\'93hijo\'94>\
+							</div>\
+						</div>\
+\
+			La \'fanica forma de poner al hijo (segundo div del ejemplo) por debajo del padre (primer div del ejemplo) es aplicarle \'93position: relative\'94 a ambos, no aplicarle \'93z-index\'94 al padre y aplicarle \'93z-index: -1\'94 al hijo.\
+\
+	Tipos de position:\
+\
+		\'96 Static. Cuando se usa este valor, se considera que no est\'e1 posicionado, ya que no adquiere esas propiedades.\
+\
+		\'96 Relative. Con este, se adquieren las propiedades siguientes:\
+\
+		Si a la siguiente caja en el flujo se le da un position: relative, entonces esta \'faltima estar\'e1 por encima, debido al orden del flujo del c\'f3digo.\
+		\
+		Adem\'e1s, se consigue que el espacio reservado a cada caja se siga conservando. Las dem\'e1s cajas no se van a mover hacia el lugar donde estaba la otra.\
+		\
+		El punto de referencia tambi\'e9n es el mismo. As\'ed, por ejemplo, si se indica top: 300px, los 300px empiezan a contar desde el borde inferior de la caja que tiene encima.\
+\
+		\'96 Absolute. Es igual que position relative, pero hay tres diferencias:\
+\
+				1. El espacio que la caja ten\'eda reservado, ya no est\'e1 reservado y, por tanto, si hay algo debajo subir\'e1.\
+\
+				2. \'93Top: 0\'94 va a ser el contenedor o el viewport, es decir, se toma como punto de referencia el contenedor o el viewport. Al contenedor lo puede tomar de referencia solo si est\'e1 posicionado. Es decir, si el 				contenedor est\'e1 posicionado, tomar\'e1 como referencia el contenedor, y si no est\'e1 posicionado, tomar\'e1 como referencia el viewport.\
+\
+				3. El tama\'f1o de la caja se ajusta al contenido.\
+\
+			Usando top: 0; left: 0; right: 0; bottom: 0; margin: auto; lo que se consigue es centrar la caja en el contenedor. \
+\
+		\'96 Fixed. Es exactamente igual que el absolute, pero queda fijo en un lugar. Es decir, no se mueve de la posici\'f3n en la que se ha insertado. Esto se suele usar para <nav>, para resaltar algo\'85 Pero como funciona igual 		que el absolute, parte del contenido est\'e1 debajo y por tanto est\'e1 tapado por la caja fixed.\
+\
+			TIP: Para resolver esto se le puede dar al body, por ejemplo, un padding-top: 100px y a la caja fijada un margin: -100px.\
+\
+		\'96 Sticky. Es una mezcla entre el relative y el fixed. Mantiene el espacio reservado de la p\'e1gina. Con este tipo de position se define en qu\'e9 momento de la p\'e1gina la caja va a estar fija. Es decir, por ejemplo: si en medio de 		dos bloques hay otro con position: sticky, y a este se le da un top: 0, en el momento en que la p\'e1gina se encuentre con ese bloque, va a quedarse fijo con un top: 0.\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\qj\partightenfactor0
+\cf0 \cb1 \
+\
+\
+
+\f0\b \ul Box model
+\f1\b0 \ulnone \
+\
+Model en el que se trabajan las cajas. Tienen varias propiedades que, en su conjunto, forman el box model:\
+\
+	\'96 content: se modifica con la propiedad line-height.\
+	\'96 padding: se modifica con la propiedad padding.\
+	\'96 border: se modifica con la propiedad border.\
+	\'96 margin: se modifica con la propiedad margin.\
+\
+Estas propiedades se superponen entre s\'ed de la siguiente forma:\
+\
+	1. Content\
+	2. Padding\
+	3. Border\
+	4. Margin\
+\
+\
+\
+
+\f0\b \ul PROPIEDAD: DISPLAY
+\f1\b0 \ulnone \
+\
+La propiedad \'93display\'94 modifica el comportamiento de las cajas. Ya no modifica la interacci\'f3n entre las cajas, sino el comportamiento en s\'ed de una caja en particular. Se habla de relaciones. La propiedad \'93display\'94 tiene muchos valores. Algunos de ellos son los siguientes:\
+\
+	\cf5 \'96 block\
+	\'96 inline: generalmente para textos. No se le puede cambiar el tama\'f1o.\
+\
+	\'96 inline-block: mezcla de inline y block. Diferencia: a los inline-block solo les podemos dar un ancho y un alto, unas dimensiones, mientras que con el inline no se puede. Adem\'e1s, con inline-block se pueden poner los 	elementos uno al lado del otro, mientras que con block no se puede.\
+\cf0 	\cf6 \'96 table: que se comporte como tabla\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\qj\partightenfactor0
+\cf6 	\'96 inline-table: es como inline-block, pero en table. Que se comporte como tabla en l\'ednea.\
+\cf0 	\'96 list-item: listas\
+	\cf6 \'96 table-cell: se comporta como una celda.\
+	\'96 table-row: se comporta como una fila.\
+	\'96 table-column: se comporta como una columna.\
+\
+	Los rojos ya no se usan. Las tablas ya no se usan.\
+\cf0 \
+\cf5 	\'96 flex\cf0 	\
+\cf5 	\'96 grid\
+\
+	Las cajas flex y grid se comportan como block, pero los elementos que son hijos de la caja no.\
+	\
+\
+	\'96 inline-flex\
+	\'96 inline-grid\
+\
+	Los que m\'e1s se usan son los verdes.\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\qj\partightenfactor0
+\cf0 \
+\
+
+\f0\b \ul PROPIEDAD: OVERFLOW
+\f1\b0 \ulnone \
+\
+Overflow es un shorthand. Cuando el texto se desborda del contenedor, la propiedad overflow permite conseguir que no se sobrepase. Esta propiedad tiene varios valores:\
+\
+	\'96 Visible. Es el valor por defecto. Deja que el texto se sobresalga.\
+\
+	\'96 Auto: detecta si el contenido sobrepasa o no el contenedor, y en caso de sobrepasarlo permite hacer scroll dentro de la caja sin que se sobrepase.\
+\
+	\'96 Scroll: obligatoriamente pone la barra de scroll independientemente de si el texto se sobrepasa o no.\
+\
+Hay overflow Y y overflow X,  y si no se especifican, lo aplica a ambos. overflow: x y;\
+\
+Las im\'e1genes no se sobresalen del contenido, sino que se cortan.\
+\
+\
+
+\f0\b \ul PROPIEDAD: FLOAT
+\f1\b0 \ulnone \
+\
+La utilidad que actualmente se le da al float es para que texto envuelva a im\'e1genes. Pero para el resto ya se ha quedado antiguo, y se puede trabajar mejor con display: flex y display: grid.\
+\
+\
+
+\f0\b \ul PSEUDO-ELEMENTOS
+\f1\b0 \ulnone \
+\
+Es un elemento que no es un elemento porque no forma parte del DOM. Los pseudo-elementos se aplican a los elementos. Existen los siguientes pseudo-elementos:\
+\
+	\'96 elemento::first-line - block. No funciona en inline. Forma parte del DOM.\
+	\'96 elemento::first-letter - block. Forma parte del DOM.\
+	\'96 elemento::placeholder. El placeholder es lo que se encuentra, por ejemplo, dentro de un input como mensaje informativo. Se incluir\'eda como un atributo en HTML.\
+			\
+			Ejemplo:\
+				<input type=\'93text\'94 placeholder=\'93inserte su nombre aqu\'ed\'94>\
+\
+			Para modificar el estilo de ese texto con CSS, debe usarse este pseudo-elemento:\
+\
+				input::placeholder\{\
+					color: red;\
+					background-color: yellow;\
+\
+	\'96 elemento::selection. Aquello que el usuario seleccione en la p\'e1gina web dentro del bloque que hayamos elegido.\
+\
+			Ejemplo: <input type=\'93text\'94 placeholder=\'93inserte su nombre aqu\'ed\'94>\
+					\
+					input::selection\{\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\qj\partightenfactor0
+\cf0 					color: red;\
+					background-color: yellow;\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\qj\partightenfactor0
+\cf0 					\
+	\'96 elemento::after \'96 hijos - content (necesario) - inline. No forma parte del DOM. Cuando se crea un pseudo-elemento after, se est\'e1 creando un hijo del elemento al que se est\'e1 aplicando el pseudo-elemento. Los pseudo-	elementos after son hijos del elemento al que se aplica. Funciona tanto con elementos en l\'ednea (ej.: <b>) como en bloque (ej.: <p>)\
+	\'96 elemento::before \'96 hijos - content (necesario) - inline. No forma parte del DOM.\
+\
+			Ejemplo de before y after:\
+				HTML:\
+\
+					<body>\
+						<b>a</b>\
+					</body>\
+	\
+				CSS:\
+\
+					b::before\{\
+						content: "me suscrib\'ed ";\
+						color: #fff;\
+						background: #000;\
+					\}\
+\
+					b::after\{\
+						content: "todo tendencias.";\
+						color: red;\
+						background: #621;\
+					\}\
+\
+				Se a\'f1ade ese texto delante y detr\'e1s de \'93a\'94, con el formato aplicado a cada uno de ellos.\
+	\
+\
+	Los pseudo-elementos que requieran de la etiqueta \'93content\'94, no forman parte del DOM.\
+\
+		Ejemplo: .texto::first-letter\{\}\
+	\
+\
+
+\f0\b \ul PSEUDO-CLASES
+\f1\b0 \ulnone \
+\
+Con las pseudo-clases lo que se hace es escuchar un evento. Son como escuchas. Las pseudo-clases m\'e1s comunes son las siguientes:\
+\
+	\'96 .clase:hover. Escucha el evento cuando el mouse est\'e1 encima. Es decir, cuando se ponga el mouse encima, aplicar\'e1 los estilos indicados. Funciona con cualquier elemento. El hover en mobile funciona cuando se hace click.\
+	\'96 .clase:link. Cambia un link que todav\'eda no se ha visitado. Los links se miden con la etiqueta <a>.\
+	\'96 .clase:visited. Si el enlace se ha visitado, se le aplicar\'e1 el color que se indique.\
+	\'96 .clase:active. Al dejar apretado un bot\'f3n, se cambian los estilos.\
+	\'96 .clase:focus. Se aplica sobre todo a los inputs, y se refiere a cuando el elemento est\'e1 en foco, es decir, cuando se activa el input para escribir.\
+	\'96 .clase:lang(x). Pr\'e1cticamente no se usa. Esto es una funci\'f3n y debe pas\'e1rsele un par\'e1metro (x). x=idioma. Lo que hace es modificar el estilo del texto que est\'e9 en el idioma especificado como par\'e1metro de la funci\'f3n. 	Ejemplo: para espa\'f1ol x=es; para ingl\'e9s, x=en;\'85 Para especificar el idioma es necesario hacerlo en el c\'f3digo HTML, en el elemento concreto, con el atributo lang=\'93\'94. Ejemplo: <b lang=\'93en\'94>How are you</b>.\
+\
+\
+
+\f0\b \ul PROPIEDAD OBJECT-FIT
+\f1\b0 \ulnone \
+\
+Propiedad que principalmente se aplica a las im\'e1genes. Se aplica para modificar resoluciones de im\'e1genes, etc. Sirve mucho para galer\'edas. Tiene los siguientes valores:\
+\
+	\'96 contain. Es el valor que tiene por defecto. Hace que las resoluciones de las im\'e1genes se ajusten al contenido.\
+	\'96 cover. La imagen se ajusta al contenedor y recorta los dem\'e1s bordes para ajustarse al tama\'f1o.\
+	\'96 none. Pone la resoluci\'f3n original independientemente de si se ajustan o no a la caja o al contenido.\
+	\'96 scale-down. Aplica el valor (contain, cover, none) que haga que la imagen sea de tama\'f1o m\'e1s peque\'f1o. \
+\
+\
+
+\f0\b \ul PROPIEDAD OBJECT-POSITION
+\f1\b0 \ulnone \
+\
+Left, right, top, bottom, para que se muestre m\'e1s de un lado que de otro. Tambi\'e9n px, em, %, REM \'85 para desplazarlo la distancia indicada.\
+\
+\
+
+\f0\b \ul PROPIEDAD CURSOR
+\f1\b0 \ulnone \
+\
+Permite cambiar el cursor (ej.: pointer, row-resize, progress, copy\'85). Por defecto, cambia el cursor al estar encima del elemento. Tambi\'e9n se puede hacer que cambie en active, etc., usando pseudo-clases.\
+La lista de cursores se encuentra en: http://w3.unpocodetodo.info/css3/cursor.php\
+\
+\
+\
+
+\f0\b \ul COLORIZACI\'d3N
+\f1\b0 \ulnone \
+\
+Web para saber c\'f3digos de colores: https://htmlcolorcodes.com/es/\
+Hay diversas formas de definir colores:\
+\
+	\'96 color name: red, blue, etc. No se recomienda ponerlo as\'ed.\
+	\'96 hexadecimal: \
+	\'96 rgb: \
+	\'96 rgba: \
+	\'96 hsl: \
+	\'96 hsla: \
+\
+\
+
+\f0\b \ul RESPONSIVE DESIGN \'96 MOBILE FIRST
+\f1\b0 \ulnone \
+\
+Responsive design trabaja con las distintas resoluciones, adapta la resoluci\'f3n a diversos dispositivos. Adaptar un dise\'f1o a distintas resoluciones.\
+\
+Mobile First lo adapta de un m\'f3vil a una tablet y despu\'e9s a un escritorio o directamente a un escritorio. Hace la adaptaci\'f3n de resoluciones peque\'f1as a resoluciones mayores.\
+\
+Las p\'e1ginas con Mobile First suelen estar mejor posicionadas.\
+\
+Para trabajar con Responsive Design se trabaja con Media Query, que es una particularidad de CSS que permite detectar una resoluci\'f3n y cambiar las etiquetas.\
+Debe incluirse el c\'f3digo HTML la etiqueta 
+\f2\fs30 \cf7 \cb8 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec7 <\cf9 \strokec9 meta\cf10 \strokec10 \'a0name\cf7 \strokec7 ="viewport"\cf10 \strokec10 \'a0content\cf7 \strokec7 ="width=device-width, initial-scale=1.0">
+\f1\fs28 \cf0 \cb1 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 \
+\
+		This gives the browser instructions on how to control the page's dimensions and scaling.\
+\
+		The \ul width=device-width\ulnone  part sets the width of the page to follow the screen-width of the device (which will vary depending on the device).\
+\
+		The \ul initial-scale=1.0\ulnone  part sets the initial zoom level when the page is first loaded by the browser.\
+	\
+	\
+	Ejemplos:\
+\
+		Con este c\'f3digo CSS: @media only screen and (max-width:  800px) se dice que \'93cuando la pantalla alcance resoluciones menores de 800px, vamos a hacer lo que est\'e9 entre llaves\'94. Por ejemplo:\
+\
+				@media only screen and (max-width:  800px) \{\
+					div\{\
+						display: block;\
+						width: 100%;\
+					\}\
+\
+					h1\{\
+						font-size: 20px;\
+					\}\
+				\}\
+\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\qj\partightenfactor0
+\cf0 Para trabajar con iconos: <script src="https://kit.fontawesome.com/6a272dd23d.js" crossorigin="anonymous"></script>\
+			https://fontawesome.com/\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\qj\partightenfactor0
+\cf0 \
+Un men\'fa responsive se adapta a dispositivos m\'f3viles. Para hacer un men\'fa responsive sin JavaScript:\
+\
+			
+\f0\b\fs18 \cf2 \ul \ulc2 HTML:
+\f1\b0 \cf0 \ulnone \
+\
+				\cf11 <!DOCTYPE html>\
+				<html>\
+				<head>\
+					<meta charset="utf-8">\
+					<title>Pruebas con CSS3</title>\
+					<link rel="stylesheet" type="text/css" href="estilo.css">\
+					<link rel="stylesheet" type="text/css" href="normalize.css">\
+					<meta name="viewport" content="width=device-width, initial-scale=1.0">\
+					<script src="https://kit.fontawesome.com/6a272dd23d.js" crossorigin="anonymous"></script>\
+				</head>\
+				<body>\
+					<header>\
+						<nav class="nav">\
+							<ul class="nav__ul">\
+								<li class="nav__li"><i class="fas fa-home"></i><a href="a">Inicio</a></li>\
+								<li class="nav__li"><i class="fas fa-user-friends"></i><a href="a">Sobre nosotros</a></li>\
+								<li class="nav__li"><i class="fas fa-dollar-sign"></i><a href="a">Gana dinero</a></li>\
+								<li class="nav__li"><i class="fas fa-question-circle"></i><a href="a">Ayuda</a></li>\
+							</ul>\
+							<ul class="nav__responsive-ul">\
+								<div class="nav__responsive-button-container">\
+									<div class="nav__responsive-button fas fa-bars"></div>\
+								</div>\
+								<div class="nav__li-container">\
+									<li class="nav__responsive-li"><i class="fas fa-home"></i><a href="a">Inicio</a></li>\
+									<li class="nav__responsive-li"><i class="fas fa-user-friends"></i><a href="a">Sobre nosotros</a></li>\
+									<li class="nav__responsive-li"><i class="fas fa-dollar-sign"></i><a href="a">Gana dinero</a></li>\
+									<li class="nav__responsive-li"><i class="fas fa-question-circle"></i><a href="a">Ayuda</a></li>\
+								</div>\
+							</ul>\
+						</nav>\
+					</header>\
+				</body>\
+				</html>\cf0 \
+\
+\
+			
+\f0\b \cf5 \ul \ulc5 CSS:
+\f1\b0 \cf0 \ulnone \
+\
+				\cf12 * \{\
+					font-family: sans-serif;\
+					font-weight: 100;\
+				\}\
+\
+				.nav__responsive-ul \{ /* Haremos que aparezca solo cuando sea responsive */\
+					display: none;\
+				\}\
+\
+				.nav \{\
+					background-color: #48e;\
+				\}\
+\
+				.nav__li \{ /* Con esto solo se cambia el color de los iconos porque el color azul (de los enlaces) lo tiene el elemento <a>\
+				y, por tanto, debe cambiarse espec\'edficamente (ver abajo) */\
+					display: inline-block;\
+					padding: 12px;\
+					color: #fff;\
+				\}\
+\
+				.nav__li:hover > a \{\
+					color: #bbb;\
+				\}\
+\
+				.nav__li:hover \{\
+					color: #bbb;\
+				\}\
+\
+				.nav a \{\
+					color: #fff;\
+					text-decoration: none;\
+				\}\
+\
+				.nav__li i \{\
+					box-sizing: border-box;\
+					text-align: right;\
+					margin-right: 5px;\
+				\}\
+\
+				.nav__responsive-button-container \{ /* Aunque se cree el estilo aqu\'ed, este no aparecer\'e1 hasta que la resoluci\'f3n no sea menor de\
+				500px */\
+					position: absolute;\
+					width: 100%;\
+					font-size: 25px;\
+					background-color: #69c;\
+					margin-top: -64px;\
+					z-index: 100;\
+				\}\
+\
+				.nav__responsive-button \{\
+					padding: 6px 20px;\
+					text-align: right;\
+					width: 100%;\
+				\}\
+\
+				/* Se comprueba con F12 en el navegador que cuando llega a 473px de width la barra de navegaci\'f3n se rompe en varias l\'edneas.\
+				Entonces, lo que se har\'e1 es redondearlo a 500px y si la resoluci\'f3n del dispositivo es menor, entonces la barra tendr\'e1 un\
+				funcionamiento distinto (ver a continuaci\'f3n @media only). */\
+\
+				@media only screen and (max-width: 500px) \{\
+					.nav__ul \{ /* Con esto se dice que cuando el ancho de la pantalla del dispositivo sea menor de 500px, esa barra de\
+					navegaci\'f3n desaparezca (ya que se configurar\'e1 la barra responsive que se hab\'eda hecho desaparecer para\
+					resoluciones mayores de 500px) */\
+			\
+					display: none;\
+				\}\
+\
+				.nav \{\
+					height: 37px;\
+					width: 100%;\
+				\}\
+\
+				.nav__responsive-ul \{\
+					display: block;\
+					position: absolute;\
+					width: 100%;\
+					margin-top: 37px;\
+					padding-top: 27px;\
+					height: 37px;\
+				\}\
+\
+				.nav__li-container \{\
+					position: relative;\
+					top: -1000px;\
+					height: calc(100vh - 64px);\
+					background: #9bf;\
+					transition: all 1s;\
+					z-index: 1;\
+					width: 75%;\
+					padding-top: 27px;\
+				\}\
+\
+				.nav__responsive-li \{\
+					width: 100%;\
+					padding: 9px 20px;\
+				\}\
+\
+				.nav__responsive-li i \{\
+					box-sizing: border-box;\
+					text-align: center;\
+					margin-right: 5px;\
+					width: 30px;\
+					color: #016;\
+				\}\
+\
+				.nav__responsive-li a \{\
+					color: #016;\
+					text-decoration: none;\
+				\}\
+\
+				.nav__responsive-ul:hover > .nav__li-container \{\
+					top: -27px;\
+				\}\
+			\}
+\fs28 \
+\cf0 \
+\
+
+\f0\b \ul FLEXBOX
+\f1\b0 \ulnone \
+\
+Cajas flexibles. Nueva forma de maquetar. Antes estaba todo construido a base de tablas.\
+\
+Flex requiere de dos cosas: un flex container y un flex item. El flex container es el que va a contener este o estos \'edtems que van a estar contenidos por el contenedor flex. Si le damos display: flex a cualquier elemento, de por s\'ed el contenedor se comporta como un bloque, como un display: block. Donde se van a notar los cambios es dentro del contenedor, es decir, en los \'edtems que est\'e9n dentro del contenedor. En resumen, la caja se comporta como un bloque y son los elementos de su interior los que van a cambiar.\
+\
+Flexbox tiene dos ejes: cross axis (eje Y) y el main axis (eje X). En su interior contienen direcciones a las que se apunta. Main axis (direcci\'f3n de izquierda a derecha) tiene el \'93main-start\'94 (donde empieza) y el \'93main-end\'94 (donde termina) el eje. Cross axis (direcci\'f3n de arriba a abajo) tiene el \'93cross-start\'94 (donde empieza) y el \'93cross-end\'94 (donde termina). Estas son las direcciones por defecto cuando se trabaja con flexbox.\
+\
+Con flexbox lo que se hace es invertir esto, cambiar las direcciones. Los flex \'edtems son solo los hijos directos de los contenedores con display: flex. Los elementos vienen por defecto en el main axis.\
+\
+\ul Propiedades que se aplican al contenedor\ulnone  (las propiedades del contenedor afectan a los \'edtems, pero se aplican al contenedor):\
+\
+	\'96 flex-direction: permite cambiar la direcci\'f3n del main axis. Valores: row (los flexitems van a comportarse como filas); row-reverse (consigue un efecto espejo, invierte lo que har\'eda el row); column (los flexitems van a 	comportarse como columnas); column-reverse (lo mismo que row-reverse, pero en columna).\
+	\'96 flex-wrap: no-wrap - wrap - wrap-reverse;\
+	\'96 flex-flow (shorthand property): flex-direction flex-wrap;\
+	\'96 justify-content: center - space-around - space-between - space-evenly; (main axis)\
+	\'96 align-items: flex-start - center - flex-end - stretch - baseline; (cross axis)\
+	\'96 align-content\
+\
+\
+
+\f0\b Property		Description\ul \
+
+\f1\b0 \ulnone align-content		Modifies the behavior of the flex-wrap property. It is similar to align-items, but instead of aligning flex items, it aligns flex lines\
+align-items		Vertically aligns the flex items when the items do not use all available space on the cross-axis\
+display			Specifies the type of box used for an HTML element\
+flex-direction		Specifies the direction of the flexible items inside a flex container\
+flex-flow			A shorthand property for flex-direction and flex-wrap\
+flex-wrap		Specifies whether the flex items should wrap or not, if there is not enough room for them on one flex line\
+justify-content	Horizontally aligns the flex items when the items do not use all available space on the main-axis\
+\
+\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\qj\partightenfactor0
+\cf0 \ul \ulc0 Propiedades que se aplican a los \'edtems\ulnone \
+\
+
+\f0\b Property	Description
+\f1\b0 \
+align-self		Specifies the alignment for a flex item (overrides the flex container's align-items property)\
+flex			A shorthand property for the flex-grow, flex-shrink, and the flex-basis properties\
+flex-basis	Specifies the initial length of a flex item\
+flex-grow	Specifies how much a flex item will grow relative to the rest of the flex items inside the same container\
+flex-shrink	Specifies how much a flex item will shrink relative to the rest of the flex items inside the same container\
+order		Specifies the order of the flex items inside the same container\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\qj\partightenfactor0
+\cf0 \
+\
+\
+
+\f0\b \ul PR\'c1CTICA: FORMULARIO CON FLEX (no se ha hecho con Mobile First y, por tanto, no queda bien en resoluciones peque\'f1as)
+\f1\b0 \ulnone \
+\
+
+\f0\b \cf14 \ul \ulc14 HTML\cf14 \ulnone :
+\f1\b0 \cf14 \
+\
+
+\fs18 \cf14 <!DOCTYPE html>\
+<html>\
+<head>\
+	<meta charset="utf-8">\
+	<title>Pruebas con CSS3</title>\
+	<link rel="stylesheet" type="text/css" href="estilo.css">\
+	<link rel="stylesheet" type="text/css" href="normalize.css">\
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">\
+	<script src="https://kit.fontawesome.com/6a272dd23d.js" crossorigin="anonymous"></script>\
+</head>\
+<body>\
+	<div class="flex-container">\
+		<form class="form">\
+			<div class="form__section">\
+				<input type="email" class="form__input" placeholder="Escriba su email." spellcheck="false">\
+			</div>\
+			<div class="form__section">\
+				<input type="text" class="form__input" placeholder="Escriba el asunto." spellcheck="false">\
+			</div>\
+			<div class="form__section">\
+				<textarea class="form__input" placeholder="Escriba su mensaje." spellcheck="false"></textarea>\
+			</div>\
+			<div class="form__section">\
+				<input type="submit" class="form__input">\
+			</div>\
+		</form>\
+		<div class="form-img">\
+			<div class="img-container">\
+				<div>\
+					<img src="https://www.pngkey.com/png/full/0-7798_mail-icon-vector-png-email-png.png">\
+				</div>\
+			</div>\
+		</div>\
+	</div>\
+</body>\
+</html>\
+
+\fs28 \cf0 \
+\
+\
+
+\f0\b \cf5 \ul \ulc5 CSS\ulnone :
+\f1\b0 \
+\
+
+\fs18 * \{\
+	font-family: sans-serif;\
+	font-weight: 100;\
+\}\
+\
+body \{\
+	background-color: #000;\
+	display: flex;\
+	padding: 0 50px;\
+\}\
+\
+.flex-container \{\
+	display: flex;\
+	align-items: center;\
+	flex-wrap: wrap;\
+	justify-content: center;\
+	background: #222;\
+	margin: 50px auto;\
+	padding: 20px;\
+	border: 14px solid #000;\
+	outline: 3px solid #1b6;\
+	max-width: 1000px;\
+	flex-grow: 1;\
+\}\
+\
+.form \{\
+	min-width: 340px;\
+	flex: 1;\
+	text-align: center;\
+	padding: 30px;\
+	order: 2;\
+\}\
+\
+.form__input \{\
+	width: 100%;\
+	padding: 7px;\
+	margin: 6px 0;\
+	border: none;\
+	border-bottom: 3px solid #1b6;\
+	background: transparent;\
+	color: #fff;\
+\}\
+\
+.form__input:focus \{\
+	background: linear-gradient(to bottom, transparent, #111);\
+	border-bottom: 3px solid #5f9;\
+	outline: none;\
+\}\
+\
+.form textarea \{\
+	min-height: 140px;\
+	resize: none;\
+\}\
+\
+.form-img \{\
+	flex: 1;\
+	padding: 10px;\
+	display: flex;\
+	min-width: 300px;\
+	max-width: 400px;\
+	order: 1;\
+\}\
+\
+.form-img div \{\
+	padding: 10px;\
+\}\
+\
+.img-container \{\
+	margin: auto;\
+\}\
+\
+.img-container div \{\
+	border-radius: 50%;\
+	text-align: center;\
+	padding: 0px;\
+\}\
+\
+.form-img img \{\
+	width: 100%;\
+	margin: auto;\
+	max-width: 200px;\
+\}\
+\
+.form input[type="submit"] \{\
+	background-color: #000;\
+	border-bottom: none;\
+	padding: 12px;\
+\}\
+\
+.form input[type="submit"]:hover \{\
+	background-color: #111;\
+	border-bottom: none;\
+	padding: 12px;\
+\}\
+\
+.form input[type="submit"]:focus \{\
+	background: #111;\
+\}
+\fs28 \cf0 \
+\
+\
+\
+\
+
+\f0\b \ul GRID
+\f1\b0 \ulnone \
+\
+	\'96 grid container: \
+	\'96 grid item: \
+	\'96 grid cell: \
+	\'96 grid tracks (column y row): \
+	\'96 grid area: \
+	\'96 grid line: column line y row line: 
+\f0\b \
+\
+
+\f1\b0 \cf6 fr = flex row\cf0 \
+\
+https://www.w3schools.com/css/css_grid.asp\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+}

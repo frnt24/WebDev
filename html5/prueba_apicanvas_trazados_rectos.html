@@ -1,0 +1,93 @@
+<!--(Primer paso) MÉTODOS para GENERAR TRAZADOS dentro de un CANVAS:
+
+    – beginPath(): comienza la figura. Marca el inicio de la creación del trazado. Es el primer método en ser llamado.
+
+    – closePath(): termina la figura. Marca el final de la creación del trazado. Es el último método en ser llamado. Si se utiliza fill( para dibujar, closePath() puede ser ignorado.
+
+(Segundo paso) MÉTODOS para DIBUJAR el TRAZADO (para enviarlas al Canvas):
+
+    – Stroke(): dibuja solo el contorno.
+
+    – Fill(): dibuja una figura sólida.
+
+    – Clip(): crea una máscara.
+
+                                                                                        Primer paso: crear el trazado en código.
+
+                                                                                        Segundo paso: dibujar el trazado creado.
+
+MÉTODOS para CREAR el TRAZADO que posteriormente será dibujado:
+
+    – moveTo(x,y): mueve el lápiz a la posición marcada en las coordenadas.
+
+    – lineTo(x,y): genera una línea recta desde la posición actual del lápiz hasta las nuevas coordenadas.
+
+    – Rect(x,y,ancho,alto): genera un rectángulo.
+
+    – Arc(x,y,radio,ángulo_inicial,ángulo_final,dirección).
+
+    – bezierCurveTo(a,b,c,d,x,y): genera una curva bezier cúbica.
+
+    – quadraticCurveTo(a,b,x,y): genera una curva bezier cuadrática.-->
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prueba API Canvas: Trazados</title>
+
+    <style>
+        section{
+            width: 500px;
+            margin: auto;
+            border: 1px red solid;
+        }
+        
+    </style>
+
+    <script>
+        function comenzar(){
+            var elemento=document.getElementById("lienzo");
+            lienzo=elemento.getContext("2d");
+
+            lienzo.beginPath(); //Se dibujará un triángulo.
+            lienzo.moveTo(125,225);
+            lienzo.lineTo(250,75);
+            // lienzo.moveTo(250,75);
+            lienzo.lineTo(375,225);
+            // lienzo.moveTo(375,225); Cuando se dibuja una línea hacia unas coordenadas, el lapiz termina en esas coordenadas. Por tanto, no hace falta usar moveTo.
+            lienzo.lineTo(125,225);
+            lienzo.clip(); //Crea una máscara. Significa que lo que se dibuje (mirar las líneas a continuación), esas líneas solo se verán en la zona dibujada por la máscara con forma de triángulo.
+
+            lienzo.beginPath(); //Se inicia un nuevo Path para crear las líneas horizontales.
+            for(i=0;i<250;i+=10){ //Se usa un bucle for() para no tener que dibujar las líneas individualmente.
+
+                lienzo.moveTo(0,i); //Al ser líneas horizontales, la línea siempre se iniciará desde x=0, y la "y" irá cambiando en función del valor "i", desplazándose verticalmente.
+                lienzo.lineTo(500,i);
+            }
+            // lienzo.moveTo(0,100);
+            // lienzo.lineTo(500,100);
+            // lienzo.moveTo(0,150);
+            // lienzo.lineTo(500,150);
+            // lienzo.moveTo(0,200);
+            // lienzo.lineTo(500,200);
+            // lienzo.closePath();
+            lienzo.stroke();
+            // lienzo.fill();
+
+        }
+
+        window.addEventListener("load",comenzar,false);
+    </script>
+</head>
+<body>
+    <section id="dibujo">
+        <canvas id="lienzo" width="500" height="300">
+            Su navegador no soporta el elemento html5 Canvas.
+        </canvas>
+    </section>
+    
+</body>
+</html>

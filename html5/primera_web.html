@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="iso-8559-1"/>
+    <meta name="description" content="Página de enseñanza html 5"/>
+    <meta name="keywords" content="html5, css3, javascript, diseño web"/>
+
+    <title>Página de programación en HTML5</title>
+    <!-- La etiqueta link sirve para enlazar o incluir documentos adicionales a la web como hojas de estilo. También se pueden agregar documentos javascript entre otros. Rel significa "relativo o relacionado" e informa de qué tipo de archivo se está agregando. href hace referencia a la ruta del archivo que se va a incluir.-->
+    
+    <link rel="stylesheet" href="mihojadeestilos.css"/>
+
+</head>
+<body>
+    <header id="cabeceraweb">
+
+        <h1>Este sería el título de nuestra web</h1>
+    </header>
+    
+    <nav id="navegacionprincipal">
+        <ul>
+            <li>Quiénes somos</li>
+            <li style="background-color: #0F0;"> Nuestros Productos</li>
+            <li>Contáctanos</li>
+            <li>Precios</li>
+        </ul>
+    </nav>
+
+    <aside id="barralateral">
+        <blockquote>Primer elemento</blockquote>
+        <blockquote>Segundo elemento</blockquote>
+        <blockquote>Tercer</blockquote>
+    </aside>
+
+    <section id="contenidoprincipal">
+
+        <article>
+
+            <header>
+
+                <hgroup><!--La etiqueta <hgroup> está obsoleta. Su función la realiza la etiqueta <article>, que sirve para establecer bloques de información dentro de una página web.-->
+
+                    <h2>Título 1</h2>
+                    <h3>Subtítulo 1</h3>
+
+                </hgroup>
+
+            </header>
+
+            <figure>
+
+                <img src="imagenes/sunset-3726030_640.jpg"/>
+
+                <figcaption>
+                    
+                    Atardecer
+
+                </figcaption>
+
+            </figure>
+
+            <p><mark>Párrafo de ejemplo sobre un <em>tema</em></mark></p>
+            <p><cite>Lo que el viento se llevó</cite></p>
+
+        </article>
+
+        <article>
+            
+            <p>Párrafo de ejemplo sobre un <strong>tema diferente</strong> al anterior</p>
+            <time datetime="2014/01/31" pubdate>Noticia publicada el día 31/01/2014</time>
+    
+        </article>
+
+    </section>
+
+    <footer id="pieprincipal">
+        <small>Derechos reservados</small> <address>Tfno 666666666</address>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,99 @@
+<!--PROPIEDAD de API Canvas para SUPERPOSICIONES:
+
+        – globalCompositeOperation con los siguientes valores:
+
+            - Source-in
+            - Source-out
+            - Source-atop
+            - Lighter
+            - Xor
+            - Destination-over
+            - Destination-in
+            - Destination-out
+            - Destination-atop
+            - Darker
+            - Copy
+
+    MÉTODO de API Canvas para DIBUJAR IMÁGENES:
+
+        – drawImage() con los siguientes parámetros:
+    
+            - drawImage(imagen,x,y)
+            - drawImage(imagen,x,y,ancho,alto)
+            - drawImage(imagen,x1,y1,ancho1,alto1,x2,y2,ancho2,alto2): x1,y1=dónde empezamos a recortar la imagen; ancho1,alto1=tamaño de la imagen antes de recortar. Este va a ser el tamaño que va a tener la imagen. Sobre este tamaño se empieza a recortar;
+            x2,y2=dónde queremos dibujar la imagen recortada; ancho2,alto2=tamaño final del recorte.
+    
+    MÉTODOS de API Canvas para CONVERTIR IMÁGENES en DATOS:
+
+        – getImageData(x,y,ancho,alto): almacena dentro de una variable objeto, una imagen que tengamos en el Canvas, pero con datos. Rescata los datos que conforman esta imagen. Por cada píxel, almacena el valor rgba.
+    
+        – putImageData(datosdeImagen,x,y)
+    
+        – createImageData(ancho,alto)
+    -->
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prueba API Canvas: Superposiciones e imágenes</title>
+
+    <style>
+        #lienzo{
+            border: 1px red solid;
+        }
+    </style>
+
+    <script>
+        function comenzar(){
+            var elemento=document.getElementById("lienzo");
+            lienzo=elemento.getContext("2d");
+            var imagen=new Image();
+            imagen.src="ejercicio1/imagenes/1.jpg";
+
+            imagen.addEventListener("load",manipular_imagen,false);
+
+            // imagen.addEventListener("load",function(){lienzo.drawImage(imagen,50,10,75,75,0,0,300,300);},false);//En esta instrucción se utiliza una "función anónima".
+
+            // lienzo.fillStyle="#880000";
+            // lienzo.fillRect(400,250,300,100);
+            // lienzo.globalCompositeOperation="source-out";
+            // lienzo.fillStyle="#AAAAFF";
+            // lienzo.font="bold 80px verdana";
+            // lienzo.textAlign="center";
+            // lienzo.textBaseline="middle";
+            // lienzo.fillText("Hola alumnos",550,300);
+        }
+
+        function manipular_imagen(e){ //Recibe como parámentro el evento desencadenado.
+            imagen=e.target; //imagen=al elemento que desencadene la acción.
+            lienzo.drawImage(imagen,0,0);
+            var info_imagen=lienzo.getImageData(0,0,200,200);
+            var posicion;
+
+            for(x=0;x<=200;x++){
+                for(y=0;y<=200;y++){
+                    posicion=(info_imagen.width*4*y)+(x*4); //esta fórmula permite acceder a las posiciones concretas de un píxel. Nos da la posicion dentro del array de la información del color rojo (del primer color) y el color verde y el color azul es lo mismo, pero sumando una posición.
+
+                    info_imagen.data[posicion]=255-info_imagen.data[posicion]; //el array es "info_imagen". De esta forma se está accediendo a cada una de las posiciones de este array y almacena los datos de rojo, verde, azul y alpha de cada píxel (en este cado no se accede al alpha porque no se quiere manipular).
+                    info_imagen.data[posicion+1]=255-info_imagen.data[posicion+1];
+                    info_imagen.data[posicion+2]=255-info_imagen.data[posicion+2];
+                }
+            }
+            lienzo.putImageData(info_imagen,300,200);
+        } 
+
+        window.addEventListener("load",comenzar,false);
+    </script>
+</head>
+<body>
+    <section id="dibujo">
+        <canvas id="lienzo" width="1200" height="750">
+            Su navegador no soporta el elemento html5 Canvas.
+        </canvas>
+    </section>
+    
+</body>
+</html>
