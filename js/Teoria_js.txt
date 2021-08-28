@@ -1,0 +1,180 @@
+Características de la Programación Orientada a Objetos (POO):
+
+	– Abstracción. Reducir los objetos a sus componentes básicos. Intentar que el objeto sea lo menos complejo posible. No se crea un método para cminar fuerte, otro para caminar lento, otro para caminar de espalda... sino que se crea un método para caminar.
+
+	– Modularidad. Capacidad de resolver un problema grande separándolo por partes.
+
+	– Encapsulamiento. Hacer que todos los datos sean privados, que el usuario no pueda acceder tan fácil, para que no se pueda acceder a ellos desde otros lugares.
+
+	– Polimorfismo. Ver cómo un objeto se comporta de manera distinta ante el mismo método. Capacidad de un objeto de comportarse distinto del resto ante un método solamente por sus propiedades.
+
+		Ejemplo:
+
+			class animal {
+				constructor(especie,edad,color){
+					this.especie = especie;
+					this.edad = edad;
+					this.color = color;
+					this.info = `Soy ${this.especie}, tengo ${this.edad} años y soy de color ${this.color}`;
+				}
+
+				verInfo(){
+				document.write(this.info + "<br>");
+				}
+			}
+
+			let perro1 = new animal("perro",5,"marrón");
+			let gato = new animal("gato",2,"negro");
+			let pajaro = new animal("pájaro",1,"verde");
+
+			perro.verInfo();
+			gato.verInfo();
+			pajaro.verInfo();
+
+
+
+Otros conceptos de POO:
+
+	– HERENCIA (EXTENDS). Consiste en crear una clase que va a tomar todo lo que puede hacer la otra clase y las propiedades de esa clase, pero además le va a agregar cosas nuevas. No se puede tener un objeto con el mismo nombre que la clase.
+
+		Ejemplo (siguiendo con el ejemplo anterior):
+
+		Se le está diciendo que la clase "perro" va a contener todo lo que tiene la clase "animal", pero que se le van a agregar unas cosas específicas.
+		Usando constructor puede decirse qué propiedades de la clase animal quiere heredar (en este caso, "especie", "edad" y "color"). Y además, se le añadirá una nueva propiedad ("raza").
+
+			class Animal {
+				constructor(especie,edad,color){
+					this.especie = especie;
+					this.edad = edad;
+					this.color = color;
+					this.info = `Soy ${this.especie}, tengo ${this.edad} años y soy de color ${this.color}.`;
+				}
+
+				verInfo(){
+				document.write(this.info + "<br>");
+				}
+			}
+
+			class Perro extends Animal{
+				constructor(especie,edad,color,raza){
+				super(especie,edad,color);
+				this.raza = raza;
+				}
+
+				mostrar(){
+					document.write(`Soy ${this.especie}, de raza ${this.raza}, tengo ${this.edad} años y soy de color ${this.color}.<br>`);
+				}
+			}
+
+			const perro1 = new Perro("perro",5,"marrón","doberman");
+			const gato = new Animal("gato",2,"negro");
+			const pajaro = new Animal("pájaro",1,"verde");
+
+			perro1.mostrar();
+			gato.verInfo();
+			pajaro.verInfo();
+
+
+
+	– MÉTODOS ESTÁTICOS (STATIC). Método que no necesita que la clase se haya creado para poder usarlo.
+
+		Ejemplo:
+
+			class Animal {
+				constructor(especie,edad,color){
+					this.especie = especie;
+					this.edad = edad;
+					this.color = color;
+					this.info = `Soy ${this.especie}, tengo ${this.edad} años y soy de color ${this.color}.`;
+				}
+
+				verInfo(){
+				document.write(this.info + "<br>");
+				}
+			}
+
+			class Perro extends Animal{
+				constructor(especie,edad,color,raza){
+				super(especie,edad,color);
+				this.raza = raza;
+				}
+
+				mostrar(){
+					document.write(`Soy ${this.especie}, de raza ${this.raza}, tengo ${this.edad} años y soy de color ${this.color}.<br>`);
+				}
+
+				static ladrar(){
+					alert("¡GUAU!");
+				}
+			}
+
+			const perro1 = new Perro("perro",5,"marrón","doberman");
+			const gato = new Animal("gato",2,"negro");
+			const pajaro = new Animal("pájaro",1,"verde");
+
+			perro1.mostrar();
+			gato.verInfo();
+			pajaro.verInfo();
+
+
+
+
+	– MÉTODOS ACCESORES (GETTERS, SETTERS) (GET, SET). Los métodos getters son para obtener un valor y los setters son para modificarlo o definirlo. Raramente los getters y los setters funcionan como propiedades. El set transforma un método en propiedad.
+
+		Ejemplo:
+
+			class Animal {
+				constructor(especie,edad,color){
+					this.especie = especie;
+					this.edad = edad;
+					this.color = color;
+					this.info = `Soy ${this.especie}, tengo ${this.edad} años y soy de color ${this.color}.`;
+				}
+
+				verInfo(){
+				document.write(this.info + "<br>");
+				}
+			}
+
+			class Perro extends Animal{
+				constructor(especie,edad,color,raza){
+				super(especie,edad,color);
+				this.raza = null;
+				}
+
+				mostrar(){
+					document.write(`Soy ${this.especie}, de raza ${this.raza}, tengo ${this.edad} años y soy de color ${this.color}.<br>`);
+				}
+
+				static ladrar(){
+					alert("¡GUAU!");
+				}
+
+				set setRaza(nuevaRaza){
+					this.raza = nuevaRaza;
+				}
+
+				get getRaza(){
+					return this.raza;
+				}
+			}
+
+			const perro1 = new Perro("perro",5,"marrón","Doberman");
+			const gato = new Animal("gato",2,"negro");
+			const pajaro = new Animal("pájaro",1,"verde");
+
+			perro1.setRaza = "Beagle";
+
+			document.write(perro1.getRaza);
+
+
+
+
+
+
+
+
+
+
+
+

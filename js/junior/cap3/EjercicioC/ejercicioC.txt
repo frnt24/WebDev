@@ -1,0 +1,7 @@
+C) Cofla ya tiene su nuevo teléfono y ahora está mirando las aplicaciones de la PlayStore, ya que quiere jugar a juegos que sean muy populares, que tengan buena puntuación y que pesen poco. No obstante, las 7 apps que llamaron su atención son un poco similares y sabe que si se las descarga todas probablemente juegue a todas. Pero él se va a descargar solo 2 para evitar pérdidas de tiempo innecesarias jugando a juegos con su teléfono. El problema viene cuando no puede decidirse sobre cuál de todas estas aplicaciones es la que se va a descargar.
+
+CREAR SOLUCIONES:
+
+	1. Crear un sistema que ayude a Cofla a decidir qué app descargar.
+	2. La información de los instaladores debe contener la cantidad de descargas, la puntuación y el peso.
+	3. Las apps se deben poder descargar, abrir, cerrar y desinstalar.

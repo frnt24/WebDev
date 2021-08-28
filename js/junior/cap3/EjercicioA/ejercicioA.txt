@@ -1,0 +1,9 @@
+A) Cofla entró en una tienda que vende teléfonos móviles porque le pareció bastante bueno comprarse un nuevo móvil. De todos los modelos que hay disponibles en esa tienda, a Cofla le llamaron la atención tres teléfonos específicamente.
+
+El problema es que ningún vendedor sabe nada al respecto y, entonces, no pueden recomendarle absolutamente nada. Pero antes de comprar esos móviles, Cofla quiere ver las cualidades y los comportamientos de cada uno para poder compararlos.
+
+CREAR SOLUCIONES:
+
+	1. Crear un sistema para mostrarle a Cofla las particularidades de los tres móviles.
+	2. Cada móvil debe tener color, peso, resolución de pantalla, resolución de cámara y memoria RAM.
+	3. Cada móvil debe poder encenderse, reiniciarse, apagarse, hacer fotos y grabar.

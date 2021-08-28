@@ -1,0 +1,5 @@
+B) Cofla no está satisfecho con los teléfonos, así que decide ir a la sección de los teléfonos de alta gama, donde podrá encontrar los teléfonos más caros de la tienda. Al entrar vio dos teléfonos que le encantaron. Estos dos teléfonos de alta gama pueden hacer todo lo que podían hacer los tres anteriores, pero tienen mejores características: pueden grabar en cámara súper lenta, tiene reconocimiento facial y una cámara extra.
+
+CREAR SOLUCIONES:
+
+	1. Implementar todas estas cualidades en los teléfonos de alta gama.
